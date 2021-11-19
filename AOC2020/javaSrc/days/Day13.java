@@ -8,7 +8,7 @@ public class Day13 {
 
     public static void update() throws IOException {
         int fileNum = 13;       //File number of input
-        String readIn[] = ReadInput.GetInputStr(fileNum);// Get input in an array for 13(131)
+        String readIn[] = ReadInput.getInputStr(fileNum);// Get input in an array for 13(131)
         int dTime = Integer.parseInt(readIn[0]);
         int schd[][] = ParceIn(readIn[1]);    //Schdules
         int len = schd.length;              // Length of input schd

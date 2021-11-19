@@ -7,7 +7,7 @@ public class Day5 {
 
     public static void update() throws IOException {
         String fileInfo[];
-        fileInfo = ReadInput.GetInputStr(5);   //Get input in an array for 5
+        fileInfo = ReadInput.getInputStr(5);   //Get input in an array for 5
         int len = fileInfo.length;          //Length of input array
 
         int seatRow = 0;
@@ -19,16 +19,16 @@ public class Day5 {
 
         for (String string : fileInfo) {
             if(string == null) break;
-            seatRow = CalcSeatRow(string);
-            seatCol = CalcSeatCol(string);
+            seatRow = calcSeatRow(string);
+            seatCol = calcSeatCol(string);
             seatNum = seatRow * 8 + seatCol;
             if(seatNum > seatMax) seatMax = seatNum;
 
             occInfo[0][seatRow] += 1 << seatCol;
             occInfo[1][seatRow] += 10 ^ seatCol;
         }
-        mySeat = FindSeat(occInfo);
-        DisplayInfo(occInfo, seatMax, mySeat);
+        mySeat = findSeat(occInfo);
+        displayInfo(occInfo, seatMax, mySeat);
     }
 
     /**************************************************************************
@@ -38,7 +38,7 @@ public class Day5 {
      * @param maxSeat
      * @param mySeat
      */
-    private static void DisplayInfo(int[][] sInfo, int maxSeat, int mySeat){
+    private static void displayInfo(int[][] sInfo, int maxSeat, int mySeat){
 
         for( int i = 0; i < sInfo[0].length; i++){
             System.out.print(i);
@@ -56,7 +56,7 @@ public class Day5 {
      * @param code
      * @return
      */
-    private static int CalcSeatRow(String code){
+    private static int calcSeatRow(String code){
         int num = 0;
 
         for( int i = 0; i < 7; i++){
@@ -70,7 +70,7 @@ public class Day5 {
      * @param code
      * @return
      */
-    private static int CalcSeatCol(String code){
+    private static int calcSeatCol(String code){
         int num = 0;
 
         for( int i = 7; i < 10; i++){
@@ -84,7 +84,7 @@ public class Day5 {
      * @param seatNum
      * @return
      */
-    private static int FindSeat(int[][] seatNum){
+    private static int findSeat(int[][] seatNum){
         int x = 0;
         int rwMatch = -1;
 

@@ -9,7 +9,7 @@ public class Day17{
 
     public static void update() throws IOException {
         int fileNum = 171;                   //File number of input
-        String dataIn[] = ReadInput.GetInputStr(fileNum);// Get input in an array
+        String dataIn[] = ReadInput.getInputStr(fileNum);// Get input in an array
         int len = dataIn.length;
 
         //Initial data is a square 1 layer deep. 171 is 3x3x1, 17 is 8x8x1, xyz

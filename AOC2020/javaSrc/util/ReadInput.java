@@ -4,13 +4,22 @@ import java.util.*;
 import java.io.*;
 
 public class ReadInput {
+    private ReadInput(){
+        throw new IllegalStateException("Utility class"); 
+    }
 
-    public static String[] GetInputStr(int dayNum) throws IOException{
+    /**
+     * Read in strings from a text file and return an array of strings.
+     * @param dayNumday number of the input file to evaluate
+     * @return int array of values in text file.
+     * @throws IOException
+     */
+    public static String[] getInputStr(int dayNum) throws IOException{
 
-        String fPath = GetFilePath(dayNum);
+        String fPath = getFilePath(dayNum);
         File file = new File(fPath);
-        String fileIn[] = new String[GetFileLen(fPath)]; //Declare array to length of file lines
-        // for (int s = 0; s < fileIn.length; s++) fileIn[s] = ""; // Initialize with ""
+        String fileIn[] = new String[getFileLen(fPath)]; //Declare array to length of file lines
+        //Initialize with "" - for(int s = 0; s < fileIn.length; s++) fileIn[s] = ""
 
         Scanner sf = new Scanner(file); //Open file
         int maxIndx = -1;
@@ -23,11 +32,17 @@ public class ReadInput {
         return fileIn;          //Pass back new array
     }
 
-    public static int[] GetInputInt(int dayNum) throws IOException{
+    /**
+     * Read in int from file and return an array of int.
+     * @param dayNum day number of the input file to evaluate
+     * @return int array of values in text file.
+     * @throws IOException
+     */
+    public static int[] getInputInt(int dayNum) throws IOException{
 
-        String fPath = GetFilePath(dayNum);
+        String fPath = getFilePath(dayNum);
         File file = new File(fPath);
-        int fileIn[] = new int[GetFileLen(fPath)]; //Declare array to length of file lines
+        int fileIn[] = new int[getFileLen(fPath)]; //Declare array to length of file lines
 
         Scanner sf = new Scanner(file); //Open file
         int maxIndx = -1;
@@ -40,22 +55,34 @@ public class ReadInput {
         return fileIn;          //Pass back new array
     }
 
-    public static int[] GetInputIntCS(int dayNum) throws IOException{
+    /**
+     * Read in a text file as int and return an array of int.
+     * @param dayNum day number of the input file to evaluate
+     * @return int array of values in text file.
+     * @throws IOException
+     */
+    public static int[] getInputIntCS(int dayNum) throws IOException{
 
-        String fileIn[] = GetInputStr(dayNum);
+        String fileIn[] = getInputStr(dayNum);
 
         int numIn[] = new int[0];
         for(int i = 0; i < fileIn.length; i++){
-                numIn = ParceStrIntCS(fileIn[i], numIn);
+                numIn = parceStrIntCS(fileIn[i], numIn);
         }
         return numIn;          //Pass back new array
     }
 
-    public static long[] GetInputLong(int dayNum) throws IOException{
+    /**
+     * Read in a text file as long and return an array of long.
+     * @param dayNum day number of the input file to evaluate
+     * @return long array of values in text file.
+     * @throws IOException
+     */
+    public static long[] getInputLong(int dayNum) throws IOException{
 
-        String fPath = GetFilePath(dayNum);
+        String fPath = getFilePath(dayNum);
         File file = new File(fPath);
-        long fileIn[] = new long[GetFileLen(fPath)]; //Declare array to length of file lines
+        long[] fileIn = new long[getFileLen(fPath)]; //Declare array to length of file lines
 
         Scanner sf = new Scanner(file); //Open file
         int maxIndx = -1;
@@ -68,33 +95,53 @@ public class ReadInput {
         return fileIn;          //Pass back new array
     }
 
-    private static String GetFilePath(int dayNum){
-        String fDir = "C:\\Users\\Hofmjc\\Documents\\Proj_MyDoc\\AoC2020\\javaSrc\\textIn";
+    /**
+     * Assemble full path/filename using the day number.
+     * Probably need to pull the common directory from the system.
+     * @param dayNum day number of the input file to open
+     * @return string with full path/filename
+     */
+    private static String getFilePath(int dayNum){
+        String fDir = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCode\\AOC2021\\javaSrc\\textIn";
         String fName = "Day" + dayNum + "Input.txt";
-        String fPath = fDir + "\\" + fName;
-        return fPath;
+        return fDir + "\\" + fName;
     }
 
-    private static int GetFileLen(String fPaNa)  throws IOException{
-        String txt;
+    /**
+     * Find number of crlf lines, length, in a file.
+     * Open file, count lines and close file.  Return count.
+     * @param fPaNa  file path/filename.txt
+     * @return count of lines
+     * @throws IOException
+     */
+    private static int getFileLen(String fPaNa)  throws IOException{
         File file = new File(fPaNa);
         Scanner sf = new Scanner(file);
         int i = 0;
         while(sf.hasNext()){
-            txt = sf.nextLine();
+            sf.nextLine();      //txt = sf.nextLine(), don't need assignment.
             i++;
         }
         sf.close();
         return i;
     }
 
-    //Convert a comma seperated string of int to an array and append to passed array.
-    public static int[] ParceStrIntCS(String readIn, int numIn[]){
-        int numLen = numIn.length;
-        int cCnt = 0;
+    /**
+     * Convert a comma seperated string of int to an array and append to passed array.
+     * @param readIn comma seprated string list of intergers
+     * @param numIn is the number of int in the list.
+     * @return additional int in the readIn array appended to numIn
+     */
+    public static int[] parceStrIntCS(String readIn, int[] numIn){
+        int numLen = numIn.length;  //Length of existing int array
+        int cCnt = 0;               //Count of new ones
         for(int i = 0; i < readIn.length(); i++) if(readIn.charAt(i) == ',') cCnt++; //Count commas
         numIn = Arrays.copyOf(numIn, numLen + ++cCnt);  //Expand array for new values
 
+        /*
+         * Read in each char.  If it is a "," parse in from beg to end as an int.
+         * and insert into numIn array.
+         */
         int beg = 0;
         for(int end = 0; end < readIn.length(); end++){
             if(readIn.charAt(end) == ','){
@@ -103,25 +150,32 @@ public class ReadInput {
                 numLen++;
             }
         }
+        //Do last entry
         numIn[numLen] = Integer.parseInt(readIn.substring(beg, readIn.length()));
         return numIn;
     }
     
-    //Convert a comma seperated string of int to an array.
-    public static int[] ParceStrIntCS(String readIn){
-        int cCnt = 0;
+    /**
+     * Convert a comma seperated string (of int) to an array of int.
+     * @param readIn comma seprated string list of intergers
+     * @return an array of int
+     */
+    public static int[] parceStrIntCS(String readIn){
+        int cCnt = 0;   //Comma count
         for(int i = 0; i < readIn.length(); i++) if(readIn.charAt(i) == ',') cCnt++; //Count commas
-        int[] numIn = new int[++cCnt];
+        int[] numIn = new int[++cCnt];  //Define an array to hold the intergers
 
         cCnt = 0;
         int beg = 0;
         for(int end = 0; end < readIn.length(); end++){     //For each char
             if(readIn.charAt(end) == ','){                  //if char is ','
+                //parse in from beg to end as an int.
                 numIn[cCnt] = Integer.parseInt(readIn.substring(beg, end));
                 cCnt++;
                 beg = end + 1;
             }
         }
+        //Do last entry
         numIn[cCnt] = Integer.parseInt(readIn.substring(beg, readIn.length()));
         return numIn;
     }

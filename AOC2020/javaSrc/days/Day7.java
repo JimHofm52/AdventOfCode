@@ -7,7 +7,7 @@ public class Day7 {
 
     public static void update() throws IOException {
         String fileInfo[];
-        fileInfo = ReadInput.GetInputStr(7);   //Get input in an array for 7
+        fileInfo = ReadInput.getInputStr(7);   //Get input in an array for 7
         int len = fileInfo.length;          //Length of input array
 
         String rules[][] = new String[2][len];  //All Outside Colors[0] & the rest[1], easy searches

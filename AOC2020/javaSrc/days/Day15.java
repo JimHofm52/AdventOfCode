@@ -8,7 +8,7 @@ public class Day15 {
 
     public static void update() throws IOException {
         int fileNum = 15;                   //File number of input
-        int dataIn[] = ReadInput.GetInputIntCS(fileNum);// Get input in an array
+        int dataIn[] = ReadInput.getInputIntCS(fileNum);// Get input in an array
         int len = dataIn.length;
 
         // ---- Part 1 ------
