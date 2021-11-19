@@ -6,6 +6,7 @@ Date Created: 12/5/2020
 
 import java.io.*;
 // import days.AllDays;
+import days.Day1;
 import days.Day5;
 import days.Day6;
 import days.Day7;
@@ -23,6 +24,7 @@ import days.Day17;
 public class AoC2020 {
     public static void main(String[] arg) throws IOException{
 
+        Day1.update();  //<===== Change to match day
         // Day5.update();  //<===== Change to match day
         // Day6.update();  //<===== Change to match day
         // Day7.update();  //<===== Change to match day
@@ -34,6 +36,6 @@ public class AoC2020 {
         // Day14.update();  //<===== Change to match day
         // Day15.update();  //<===== Change to match day
         // Day16.update();  //<===== Change to match day
-        Day17.update();  //<===== Change to match day
+        // Day17.update();  //<===== Change to match day
     }
 }
