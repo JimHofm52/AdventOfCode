@@ -26,8 +26,8 @@ public class Day1 {
     /**
      * Find 2 values that sum to 2020.  What is the product.
      * Num - 148       Value - 1312
-     * Num - 164       Value - 708
-     * Sum = 2020      Product = 928896
+     * Num - 164       Value -  708
+     *                   Sum = 2020      Product = 928896
      */
     private static void question1(){
         for ( ptr[0] = 0; ptr[0] < len - 1; ptr[0]++) {
@@ -45,7 +45,7 @@ public class Day1 {
      * Num - 44        Value - 798
      * Num - 55        Value - 664
      * Num - 90        Value - 558
-     * Sum = 2020      Product = 295668576
+     *                  Sum = 2020      Product = 295668576
      */
     private static void question2(){
         for ( ptr[0] = 0; ptr[0] < len - 2; ptr[0]++) {
@@ -84,15 +84,11 @@ public class Day1 {
 
    /**************************************************************************
      * Print the Answsers
-     * 
-     * @param intInfo
-     * @param ptr1
-     * @param ptr2
      */
     private static void displayInfo(){
         System.out.println("\n");
         for(int i : ptr){
-            System.out.println("Num - " + i + "\tValue - " + fileInfo[i]);   //confirmed 892
+            System.out.println("Num - " + i + "\tValue - " + fileInfo[i]);
         }
 
         System.out.println("\t\t Sum = " + valSum() +
