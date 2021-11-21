@@ -8,6 +8,7 @@ import java.io.*;
 // import days.AllDays;
 import days.Day1;
 import days.Day2;
+import days.Day3;
 import days.Day5;
 import days.Day6;
 import days.Day7;
@@ -26,7 +27,8 @@ public class AoC2020 {
     public static void main(String[] arg) throws IOException{
 
         // Day1.update();  //<===== Change to match day
-        Day2.update();  //<===== Change to match day
+        // Day2.update();  //<===== Change to match day
+        Day3.update();  //<===== Change to match day
         // Day5.update();  //<===== Change to match day
         // Day6.update();  //<===== Change to match day
         // Day7.update();  //<===== Change to match day
