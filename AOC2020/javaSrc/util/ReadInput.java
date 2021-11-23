@@ -14,7 +14,7 @@ public class ReadInput {
      * @return int array of values in text file.
      * @throws IOException
      */
-    public static String[] getInputStr(int dayNum) throws IOException{
+    public static String[] getInputStr(String dayNum) throws IOException{
 
         String fPath = getFilePath(dayNum);
         File file = new File(fPath);
@@ -32,13 +32,18 @@ public class ReadInput {
         return fileIn;          //Pass back new array
     }
 
+    /** dayNum is int and adds leading 0 for LT 9, converts to string. */
+    public static String[] getInputStr(int dayNum) throws IOException{
+        return getInputStr((dayNum < 10 ? "0" : "") + String.valueOf(dayNum));
+    }
+
     /**
      * Read in int from file and return an array of int.
      * @param dayNum day number of the input file to evaluate
      * @return int array of values in text file.
      * @throws IOException
-     */
-    public static int[] getInputInt(int dayNum) throws IOException{
+     */ 
+    public static int[] getInputInt(String dayNum) throws IOException{
 
         String fPath = getFilePath(dayNum);
         File file = new File(fPath);
@@ -55,13 +60,18 @@ public class ReadInput {
         return fileIn;          //Pass back new array
     }
 
+    /** dayNum is int and adds leading 0 for LT 9, converts to string. */ 
+    public static int[] getInputInt(int dayNum) throws IOException{
+        return getInputInt((dayNum < 10 ? "0" : "") + String.valueOf(dayNum));
+    }
+
     /**
      * Read in a text file as int and return an array of int.
      * @param dayNum day number of the input file to evaluate
      * @return int array of values in text file.
      * @throws IOException
      */
-    public static int[] getInputIntCS(int dayNum) throws IOException{
+    public static int[] getInputIntCS(String dayNum) throws IOException{
 
         String fileIn[] = getInputStr(dayNum);
 
@@ -72,13 +82,18 @@ public class ReadInput {
         return numIn;          //Pass back new array
     }
 
+    /** dayNum is int and adds leading 0 for LT 9, converts to string. */ 
+    public static int[] getInputIntCS(int dayNum) throws IOException{
+        return getInputIntCS((dayNum < 10 ? "0" : "") + String.valueOf(dayNum));
+    }
+
     /**
      * Read in a text file as long and return an array of long.
      * @param dayNum day number of the input file to evaluate
      * @return long array of values in text file.
      * @throws IOException
      */
-    public static long[] getInputLong(int dayNum) throws IOException{
+    public static long[] getInputLong(String dayNum) throws IOException{
 
         String fPath = getFilePath(dayNum);
         File file = new File(fPath);
@@ -95,6 +110,11 @@ public class ReadInput {
         return fileIn;          //Pass back new array
     }
 
+    /** dayNum is int and adds leading 0 for LT 9, converts to string. */ 
+    public static long[] getInputLong(int dayNum) throws IOException{
+        return getInputLong((dayNum < 10 ? "0" : "") + String.valueOf(dayNum));
+    }
+
     /**
      * Convert a space seperated string and crlf separated record to an array of records.
      * IE. Day4:
@@ -108,7 +128,7 @@ public class ReadInput {
      * separted values, on various line.
      * @return an array of int
      */
-    public static String[] getInputStrSpS(int dayNum) throws IOException{
+    public static String[] getInputStrSpS(String dayNum) throws IOException{
 
         String fPath = getFilePath(dayNum);
         File file = new File(fPath);
@@ -137,16 +157,26 @@ public class ReadInput {
         return fileIn;          //Pass back new array
     }
 
+    /** dayNum is int and adds leading 0 for LT 9, converts to string. */ 
+    public static String[] getInputStrSpS(int dayNum) throws IOException{
+        return getInputStrSpS((dayNum < 10 ? "0" : "") + String.valueOf(dayNum));
+    }
+
     /**
      * Assemble full path/filename using the day number.
      * Probably need to pull the common directory from the system.
      * @param dayNum day number of the input file to open
      * @return string with full path/filename
      */
-    private static String getFilePath(int dayNum){
+    private static String getFilePath(String dayNum){
         String fDir = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCode\\AOC2020\\javaSrc\\textIn";
         String fName = "Day" + dayNum + "Input.txt";
         return fDir + "\\" + fName;
+    }
+
+    /** dayNum is int and adds leading 0 for LT 9, converts to string. */ 
+    private static String getFilePath(int dayNum){
+        return getFilePath((dayNum < 10 ? "0" : "") + String.valueOf(dayNum));
     }
 
     /**

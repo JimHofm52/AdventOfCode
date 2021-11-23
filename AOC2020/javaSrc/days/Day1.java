@@ -15,7 +15,7 @@ public class Day1 {
     }
 
     public static void update() throws IOException {
-        fileInfo = ReadInput.getInputInt(1);    //Get input in an array for 5
+        fileInfo = ReadInput.getInputInt("01");    //Get input in an array for 5
         len = fileInfo.length;                  //Length of input array
         ptr = new int[2];
         question1();
