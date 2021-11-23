@@ -68,7 +68,7 @@ public class Day7 {
      */
     private static int GetRules(String inFile[], String rules[][]){
         int ndx = 0;
-        for( String in : inFile){
+        for( String in : inFile){           //Sort input data (fileInfo) to a managable array
             if(in != null && in !=""){
                 rules[0][ndx] = in.substring(0, in.indexOf(" bags contain"));   //Get out color
                 rules[1][ndx] = in.substring(in.indexOf(" bags contain") + 14); //Get the rest
@@ -100,7 +100,7 @@ public class Day7 {
         for (int i = strt; i < end; i++) {
             oNdx = 0;
             for(String s : rules[1]){
-                if(s.contains(fndColor[i])){                    //If found
+                if(s.contains(fndColor[i])){                //If found
                     if(!trkClr[oNdx]){                      //and not found before
                         trkClr[oNdx] = true;                //Found now
                         fndColor[end + cnt] = rules[0][oNdx];   //Save the color

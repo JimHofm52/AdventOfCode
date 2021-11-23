@@ -32,8 +32,8 @@ public class AoC2020 {
         // Day3.update();  //<===== Change to match day
         // Day4.update();  //<===== Change to match day
         // Day5.update();  //<===== Change to match day
-        Day6.update();  //<===== Change to match day
-        // Day7.update();  //<===== Change to match day
+        // Day6.update();  //<===== Change to match day
+        Day7.update();  //<===== Change to match day
         // Day8.update();  //<===== Change to match day
         // Day9.update();  //<===== Change to match day
         // Day10.update();  //<===== Change to match day
