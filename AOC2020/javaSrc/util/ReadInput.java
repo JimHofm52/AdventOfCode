@@ -96,6 +96,48 @@ public class ReadInput {
     }
 
     /**
+     * Convert a space seperated string and crlf separated record to an array of records.
+     * IE. Day4:
+     * <p>eyr:2029 ecl:amb
+     * <p>byr:1980
+     * <p>hgt:177cm pid:914628384 hcl:#623a2f iyr:2013
+     * <p>crlf (empty)
+     * <P>to:
+     * <p>eyr:2029 ecl:amb byr:1980 hgt:177cm pid:914628384 hcl:#623a2f iyr:2013(sp)
+     * @param readIn list of records separated by empty line, separted items space 
+     * separted values, on various line.
+     * @return an array of int
+     */
+    public static String[] getInputStrSpS(int dayNum) throws IOException{
+
+        String fPath = getFilePath(dayNum);
+        File file = new File(fPath);
+        String fileIn[] = new String[getFileRcdCnt(fPath)]; //Declare array to record count
+        //Initialize with "" - for(int s = 0; s < fileIn.length; s++) fileIn[s] = ""
+
+        Scanner sf = new Scanner(file); //Open file
+        int maxIdx = 0;
+        String strIn = "";
+        String strLn = "";
+        while(sf.hasNext()){    //Read in lines from file
+            fileIn[maxIdx] = "";
+            strIn = sf.nextLine();
+            if(strIn.isEmpty()){
+                fileIn[maxIdx] = strLn;
+                maxIdx++;
+                strLn = "";
+            }else{
+                if(!strLn.isEmpty()) strLn = strLn.concat(" ");
+                strLn = strLn.concat(strIn);
+            }
+            fileIn[maxIdx] = strLn;
+        }
+        sf.close();             //Close file
+
+        return fileIn;          //Pass back new array
+    }
+
+    /**
      * Assemble full path/filename using the day number.
      * Probably need to pull the common directory from the system.
      * @param dayNum day number of the input file to open
@@ -122,6 +164,27 @@ public class ReadInput {
             sf.nextLine();      //txt = sf.nextLine(), don't need assignment.
             i++;
         }
+        sf.close();
+        return i;
+    }
+
+    /**
+     * Find number of empty lines, records, in a file.
+     * Open file, count empty lines and close file.  Return count.
+     * @param fPaNa  file path/filename.txt
+     * @return count of lines
+     * @throws IOException
+     */
+    private static int getFileRcdCnt(String fPaNa)  throws IOException{
+        File file = new File(fPaNa);
+        Scanner sf = new Scanner(file);
+        int i = 0;
+        String txt = "";
+        while(sf.hasNext()){
+            txt = sf.nextLine();      //txt = sf.nextLine(), don't need assignment.
+            if(txt.isEmpty()) i++;
+        }
+        i++;    //Last record.
         sf.close();
         return i;
     }
