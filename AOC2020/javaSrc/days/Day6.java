@@ -15,10 +15,10 @@ public class Day6 {
         int total = 0;
         int totYes = 0;
 
-        CntGrps( fileInfo, grpPplCnt, grpPplNum);
+        CntGrps( fileInfo, grpPplCnt, grpPplNum);   //Sort input data(fileInfo) 
         for (int i=0; i < grpPplCnt.length; i++) {
-            total += GrpTot(grpPplCnt, i);                  //part 1
-            totYes += CntAllYes(grpPplCnt, grpPplNum, i);   //part 2
+            total += GrpTot(grpPplCnt, i);                  //part 1 - 6532
+            totYes += CntAllYes(grpPplCnt, grpPplNum, i);   //part 2 - 3427
         }
 
         System.out.println("\nTotal - \t" + total);     //Confirmed answer = 6532 part 1
@@ -29,22 +29,23 @@ public class Day6 {
     /**
      * Get counts for Yes answers for each question, a - z per group.
      * And number of people in group.
+     * <p> If a letter exists they answer yes for that question (a - z).
      * 
-     * @param inData
-     * @param grpCnt
-     * @param pplCnt
+     * @param inData Ref to input data
+     * @param grpCnt Ref to array to questions answer yes
+     * @param pplCnt Ref to array to people answering yes
      */
-    private static void CntGrps( String inData[], int grpCnt[][], int pplCnt[] ){
+    private static void CntGrps( String[] inData, int[][] grpCnt, int[] pplCnt ){
         int rcdNdx = 0;
         
         for (String strIn : inData) {
-            if(strIn.length() > 0 && strIn != null){
-                for( int i = 0; i < strIn.length(); i++){
-                    grpCnt[rcdNdx][strIn.charAt(i) - 'a']++;
+            if(!strIn.isEmpty()){
+                for(int i = 0; i < strIn.length(); i++){
+                    grpCnt[rcdNdx][strIn.charAt(i) - 'a']++;    //incr for ques. in rcd.
                 }
-                pplCnt[rcdNdx]++;
+                pplCnt[rcdNdx]++;   //incr ppl answering yes in this grp.
             }else{
-                rcdNdx++;
+                rcdNdx++;   //incr grp
             }
         }
     }
