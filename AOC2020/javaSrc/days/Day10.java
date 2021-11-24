@@ -17,9 +17,10 @@ public class Day10 {
         System.out.println("\nDiffs\tother - " + cntDiff[0] +
                             "\t1 - " + cntDiff[1] + "\t2 - " + cntDiff[2] + "\t3 - " + cntDiff[3] +
                             "\tProduct of 1 & 3 is " + (cntDiff[1] * cntDiff[3]));
+        //Diffs   other - 0       1 - 68  2 - 0   3 - 25  Product of 1 & 3 is 1700 - confirmed
         //----- Part 2 ------
         long totAdpCombos = CalcTotCombos(diff);
-        System.out.println("\nTotal combinations - " + totAdpCombos);
+        System.out.println("\nTotal combinations - " + totAdpCombos);   //12401793332096 - confirmed
     }
 
     /**
