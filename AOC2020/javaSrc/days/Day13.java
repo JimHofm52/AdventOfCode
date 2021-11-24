@@ -7,20 +7,20 @@ import util.*;
 public class Day13 {
 
     public static void update() throws IOException {
-        int fileNum = 13;       //File number of input
+        String fileNum = "13";       //File number of input
         String readIn[] = ReadInput.getInputStr(fileNum);// Get input in an array for 13(131)
-        int dTime = Integer.parseInt(readIn[0]);
-        int schd[][] = ParceIn(readIn[1]);    //Schdules
-        int len = schd.length;              // Length of input schd
+        int dTime = Integer.parseInt(readIn[0]);    //Depart time
+        int schd[][] = ParceIn(readIn[1]);          //Schdules, [0]Repeat time [1]Offset
+        int len = schd[0].length;                   //Length of input schd items
         int a = 0;
         // ---- Part 1 ------
-        int ans[] = new int[2];
-        FindClosest(dTime, schd[0], ans);
+        int ans[] = new int[2];             //Array toreturn values
+        FindClosest(dTime, schd[0], ans);   //Question 1
         a = schd[0][ans[0]] * ans[1];
         System.out.println("\nPart 1 - " + a); // Confirmed - Part 1 Manhattan adr - 2095(295)
 
         // ----- Part 2 ------
-        long time = MinMatch(schd);
+        long time = MinMatch(schd);                     //This takes about 40 min, with a seed!
         System.out.println("\nPart 2 Time - " + time); // Confirmed - Part 2 Time - 598411311431841(1068781)
     }
 
@@ -112,12 +112,15 @@ public class Day13 {
         // long busTime = 449345386952322L;     // Lo, 640061773188771L Hi from prv failures
         long busTime = 536447854456581L;        // Seed from last try (failure, exceeded hi)
 
-        busTime = busTime - (busTime % mxBusNum);   //Use seed to find a 0 modulo of the max bus number
+        //The busTime seed is adjusted to be a multiple of busNum 0 and the max busNum.
+        //This allows the max step since the the first bus offset is 0 and the max busNum
+        //is used for check, the largest step available. 
+        busTime = busTime - (busTime % (schd[0][0] * mxBusNum));   //Use seed to find a 0 modulo of the max bus number
         boolean fnd = false;
 
         do{
             // busTime++;
-            busTime += mxBusNum;    //Increment to next max value
+            busTime += (schd[0][0] * mxBusNum);    //Increment to next max value
             fnd = true;
             for(int i = 0; i < schd[0].length; i++){    //Chk all values.  Subtract max leaving time
                 if(!ChkBus(busTime - mxBusLvg, schd[0][i], schd[1][i])) fnd = false;
