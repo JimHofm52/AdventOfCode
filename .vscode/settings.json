@@ -1,0 +1,7 @@
+{
+    "java.project.sourcePaths": [
+        "AOC219/javaSrc",
+        "AOC2021/javaSrc",
+        "AOC2019/javaSrc"
+    ]
+}

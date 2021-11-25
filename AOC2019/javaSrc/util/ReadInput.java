@@ -4,10 +4,12 @@ import java.util.*;
 import java.io.*;
 
 public class ReadInput {
+    
+    private static String year = "AOC2019";
+
     private ReadInput(){
         throw new IllegalStateException("Utility class"); 
     }
-
     /**
      * Read in strings from a text file and return an array of strings.
      * @param dayNumday number of the input file to evaluate
@@ -169,7 +171,8 @@ public class ReadInput {
      * @return string with full path/filename
      */
     private static String getFilePath(String dayNum){
-        String fDir = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCode\\AOC2020\\javaSrc\\textIn";
+        String fDir = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCode\\" +
+                       year + "\\javaSrc\\textIn";
         String fName = "Day" + dayNum + "Input.txt";
         return fDir + "\\" + fName;
     }
