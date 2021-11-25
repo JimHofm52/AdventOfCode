@@ -1,0 +1,15 @@
+//Advent of Code 2021
+/*
+Programmer: Jim Hofmann
+Date Created: 12/1/2021
+*/
+
+import java.io.*;
+import days.*;
+
+public class AoC2021 {
+    public static void main(String[] arg) throws IOException{
+
+        Day01.update();  //<===== Change to match day
+    }
+}
