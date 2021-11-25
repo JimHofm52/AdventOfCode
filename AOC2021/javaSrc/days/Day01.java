@@ -3,11 +3,11 @@ package days;
 import java.io.IOException;
 import util.ReadInput;
 
-public class Day5 {
+public class Day01 {
 
     public static void update() throws IOException {
         String fileInfo[];
-        fileInfo = ReadInput.GetInputStr(5);   //Get input in an array for 5
+        fileInfo = ReadInput.getInputStr(1);   //Get input in an array for 5
         int len = fileInfo.length;          //Length of input array
 
         int seatRow = 0;
