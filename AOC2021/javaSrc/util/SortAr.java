@@ -2,7 +2,11 @@ package util;
 
 public class SortAr {
 
-    public static void Sort(int inAr[]){
+    /**
+     * Sort the passed array low to high.  Returned in same array.
+     * @param inAr array to be sorted.
+     */
+    public static void sort(int inAr[]){
         int ndx = 0;
         int iTmp = 0;
         boolean done = false;
@@ -19,5 +23,4 @@ public class SortAr {
             }
         }while(!done);
     }
-
 }

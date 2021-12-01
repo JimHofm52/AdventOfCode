@@ -4,101 +4,49 @@ import java.io.IOException;
 import util.ReadInput;
 
 public class Day01 {
+    private static int fileInfo[];
+    private static int len;
+
+    /**
+     * Constructor, not needed but used for standards.
+     */
+    public Day01(){
+    }
 
     public static void update() throws IOException {
-        String fileInfo[];
-        fileInfo = ReadInput.getInputStr(1);   //Get input in an array for 5
-        int len = fileInfo.length;          //Length of input array
+        String fNum = "01";
+        fileInfo = ReadInput.getInputInt(fNum);   //Get input in an array for 1
+        len = fileInfo.length;          //Length of input array
 
-        int seatRow = 0;
-        int seatCol = 0;
-        int seatNum = 0;
-        int seatMax = 0;
-        int mySeat = -1;
-        int occInfo[][] = new int[2][128]; //[0]=Num, [1]=Row, [2]=RwD
-
-        for (String string : fileInfo) {
-            if(string == null) break;
-            seatRow = CalcSeatRow(string);
-            seatCol = CalcSeatCol(string);
-            seatNum = seatRow * 8 + seatCol;
-            if(seatNum > seatMax) seatMax = seatNum;
-
-            occInfo[0][seatRow] += 1 << seatCol;
-            occInfo[1][seatRow] += 10 ^ seatCol;
-        }
-        mySeat = FindSeat(occInfo);
-        DisplayInfo(occInfo, seatMax, mySeat);
-    }
-
-    /**************************************************************************
-     * Print the Answsers
-     * 
-     * @param sInfo
-     * @param maxSeat
-     * @param mySeat
-     */
-    private static void DisplayInfo(int[][] sInfo, int maxSeat, int mySeat){
-
-        for( int i = 0; i < sInfo[0].length; i++){
-            System.out.print(i);
-            System.out.print("\t" + sInfo[0][i]);
-            System.out.println("\t" + sInfo[1][i]);
-        }
-        System.out.println("\n");
-        System.out.println("\nMx Seat - " + maxSeat);   //confirmed 892
-        System.out.println("\nMy Seat - " + mySeat);    //confirmed 625
+        question1(fileInfo);
+        question2(fileInfo);
     }
 
     /**
-     * Coverts the FFBBFBF(RLR) to a Row number
-     * 
-     * @param code
-     * @return
+     * Question 1: Cnt increasing depth reading
      */
-    private static int CalcSeatRow(String code){
-        int num = 0;
-
-        for( int i = 0; i < 7; i++){
-            if( code.charAt(i) == 'B') num += 1 << (6 - i);
+    private static void question1(int[] rdg) {
+        int incCnt = 0;
+        for(int i = 1; i < rdg.length; i++){
+            if(rdg[i] > rdg[i - 1]) incCnt++;
         }
-        return num;
+        //Track ,  Confirmed: 01-1298   011-7
+        System.out.println("\nPart 1: Number Increasing depth readings: " + incCnt);
     }
-
+    
     /**
-     * Coverts the (FFBBFBF)RLR to a Seat number
-     * @param code
-     * @return
+     * Question 2: Cnt increasing depth readings using a 3 value sliding window.
      */
-    private static int CalcSeatCol(String code){
-        int num = 0;
-
-        for( int i = 7; i < 10; i++){
-            if( code.charAt(i) == 'R') num += 1 << (9 - i);
+    private static void question2(int[] rdg) {
+        int incCnt = 0;
+        int smpl1 = 0;                          //1st sliding 3 sample
+        int smpl2 = rdg[0] + rdg[1] + rdg[2];   //2nd sliding 3 sample
+        for(int i = 3; i < rdg.length; i++){
+            smpl1 = smpl2;
+            smpl2 += (rdg[i] - rdg[i - 3]); 
+            if(smpl2 > smpl1) incCnt++;
         }
-        return num;
-    }
-
-    /**
-     * Find my seat.  Assumes most seats are occupied.  Only 1 seat open in a row.
-     * @param seatNum
-     * @return
-     */
-    private static int FindSeat(int[][] seatNum){
-        int x = 0;
-        int rwMatch = -1;
-
-        int rw = 0;
-        for( int sNum : seatNum[0]){
-            if(sNum != 0 && sNum != 255) {
-                x = 255 - sNum;
-                for(int seat = 1; seat < 7; seat++){
-                    if(x == (1 << seat)) rwMatch = 1 << (seat - 1);
-                }
-            }
-            if(rwMatch > -1 ) break;
-            rw++;
-        }
-        return rw * 8 + rwMatch;
+        //Track ,  Confirmed: 01-1248   011-5
+        System.out.println("\nPart 2: Number Increasing sliding depth readings: " + incCnt + "\n");
     }
 }
