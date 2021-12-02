@@ -14,7 +14,8 @@ public class DayXX {
     }
 
     public static void update() throws IOException {
-        fileInfo = ReadInput.getInputStr(1);   //Get input in an array for 1
+        String fNum = "01";
+        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
     }
@@ -23,7 +24,7 @@ public class DayXX {
      * Question 1: Number of possible PWs meeting the criteria:
      */
     private static void question1() {
-        //Track ,  Confirmed: 04-931
+        //Track ,  Confirmed: 04-???   041-???
         // System.out.println("\nPart 1: Number of possible PWs: " + pwOKCnt);
     }
     
@@ -31,10 +32,7 @@ public class DayXX {
      * Question 2: Number of possible PWs meeting the criteria:
      */
     private static void question2() {
-        //Track ,  Confirmed: 04-609
+        //Track ,  Confirmed: 04-???   041-???
         // System.out.println("\nPart 2: Number of possible PWs: " + pwOKCnt);
     }
-    
-
-
 }
