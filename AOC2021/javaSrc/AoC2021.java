@@ -11,8 +11,8 @@ public class AoC2021 {
     public static void main(String[] arg) throws IOException{
 
         // Day01.update();  //<===== Change to match day
-        Day02.update();  //<===== Change to match day
-        // Day03.update();  //<===== Change to match day
+        // Day02.update();  //<===== Change to match day
+        Day03.update();  //<===== Change to match day
         // Day04.update();  //<===== Change to match day
         // Day05.update();  //<===== Change to match day
     }
