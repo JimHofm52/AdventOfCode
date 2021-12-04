@@ -5,8 +5,23 @@ public class IntCode {
     private IntCode(){
     }
 
+    /*
+     *   opcode  - parm1             +  parm2             => parm3
+     * <p>     1 - value pointed to  +  value pointed to  => pointed to in 3
+     * <p>   101 - value in 1st loc  +  value pointed to  => loc pointed to.
+     * <p>  1001 - value pointed to  +  value in 2nd loc  => loc pointed to.
+     * <p>  1101 - value in 1st loc  +  value in 2nd loc  => loc pointed to.
+     * <p> 11101 - value in 1st loc  +  value in 2nd loc  => output.
+     * @param memory per loaded with code to execute
+     * @return
+     */
     /**
      * Run int code computer against instructions passed in memory.
+     * <p> opcode 1 - add values pointed to by next 2 parms & store in loc pointed to in 3
+     * <p>   11 - value in next loc + value pointed to => loc pointed to.
+     * <p>  111 - value in next loc + value in 2nd loc => loc pointed to.
+     * <p>  101 - value pointed to + value pointed to => loc pointed to.
+     * <p> 1111 - value in next loc + value in 2nd loc => output.
      * @param memory per loaded with code to execute
      * @return
      */
@@ -18,18 +33,18 @@ public class IntCode {
         int len = memory.length;
 
         do{
-            opCode = (instrPtr < 0 || instrPtr > len) ? 100 :  (memory[instrPtr] % 100);   //Is ptr in memory range?
+            opCode = memory[instrPtr] % 100;
             parmMode = memory[instrPtr] / 100;
-            switch((parmMode % 10) * 100 + opCode){
+            switch(opCode){
                 case 1:     //Add next 2, ptr+1 + ptr+2 and store in ptr+3
-                val = getValues(instrPtr, 4, memory, parmMode);
-                // parm = getParms(instrPtr, 4, memory);   //ret opcode + parms
-                tmp = val[1] + val[2];
-                parmMode /= 1000;
+                val = getValues(instrPtr, 3, memory, parmMode);
+                tmp = val[0] + val[1];
+
+                parmMode /= 100;
                 if((parmMode) > 0) {
                     inOut[1] = tmp;
                 }else{
-                    memory[instrPtr + 3] = tmp;
+                    memory[instrPtr + 2] = tmp;
                 }
                 instrPtr += 4;
                 rslt = 1;
@@ -78,17 +93,10 @@ public class IntCode {
         return runIntCode(memory, info);
     }
 
-    /**
-     * Get opCode + needed parms for this opCode.
-     * @param iptr instruction pointer
-     * @param cnt count of opCode + parms
-     * @param mem memory to use.
-     * @return an array of opCode + parms values
-     */
-    private static int[] getParms(int iptr, int cnt, int[] mem){
-        int[] p = new int[cnt];
-        for(int i = 0; i < cnt; i++) p[i] = mem[iptr + i];
-        return p;
+    private static int getOpcode(int[] memory, int instrPtr, int len){
+        if(instrPtr < 0 || instrPtr > len) return 100;
+        if(memory[instrPtr] % 100 == 99) return 99;   //Is ptr in memory range?
+        return memory[instrPtr] % 10;
     }
 
     /**
@@ -101,11 +109,25 @@ public class IntCode {
     private static int[] getValues(int iPtr, int cnt, int[] mem, int pMode){
         int[] p = new int[cnt];
         int tmpP;
+        iPtr++;
         for(int i = 0; i < cnt; i++) {
             tmpP = mem[iPtr + i];
             p[iPtr + i] = pMode % 10 > 0 ? mem[tmpP] : tmpP;
             pMode /= 10;
         }
+        return p;
+    }
+
+    /**
+     * Get opCode + needed parms for this opCode.
+     * @param iptr instruction pointer
+     * @param cnt count of opCode + parms
+     * @param mem memory to use.
+     * @return an array of opCode + parms values
+     */
+    private static int[] getParms(int iptr, int cnt, int[] mem){
+        int[] p = new int[cnt];
+        for(int i = 0; i < cnt; i++) p[i] = mem[iptr + i];
         return p;
     }
 }

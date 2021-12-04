@@ -27,7 +27,8 @@ public class Day05 {
      * memory[1] & [2] to 12 & 2 respectfully.
      */
     private static void question1(int input) {
-        int[] memory = fileInfo.clone();
+        // int[] memory = fileInfo.clone();
+        int[] memory = {1, 3, 2, 2, 99};
         int[] info = {input, 0};    //[0]=input, [1]=output
         IntCode.runIntCode(memory, info);
 
