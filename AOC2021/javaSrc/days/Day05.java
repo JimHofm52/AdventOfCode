@@ -3,14 +3,14 @@ package days;
 import java.io.IOException;
 import util.ReadInput;
 
-public class DayXX {
+public class Day05 {
     private static String fileInfo[];
     private static int len;
 
     /**
      * Constructor, not needed but used for standards.
      */
-    public DayXX(){
+    public Day05(){
     }
 
     public static void update() throws IOException {
