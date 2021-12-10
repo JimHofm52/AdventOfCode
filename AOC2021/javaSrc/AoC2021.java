@@ -15,7 +15,7 @@ public class AoC2021 {
         // Day03.update();  //<===== Change to match day
         // Day04.update();  //<===== Change to match day
         // Day05.update();  //<===== Change to match day
-        Day06.update();  //<===== Change to match day
-        // Day07.update();  //<===== Change to match day
+        // Day06.update();  //<===== Change to match day
+        Day07.update();  //<===== Change to match day
     }
 }
