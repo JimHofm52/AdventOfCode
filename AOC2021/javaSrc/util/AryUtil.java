@@ -96,4 +96,21 @@ public class AryUtil {
         return org;
     }
 
+    /**
+     * Sort a 2d array.  ----Not done ----
+     * @param org original 2d array
+     * @param app 2d array to append
+     * @return original arrary + appended array
+     */
+    // public static int[][] sortAry2By(int[][] aryIn){
+        // int orgLen = aryIn.length;
+        // int subLen = aryIn[0].length;
+
+        // Arrays.sort(aryIn[0]);
+        // for(int i = 0; i < appLen; i++){
+        //     org[orgLen + i] = Arrays.copyOf(app[i], app[0].length);
+        // }
+        // return org;
+    // }
+
 }
