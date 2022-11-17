@@ -1,11 +1,15 @@
-package days;
+package javasrc.days;
 
 import java.io.DataInput;
 import java.io.IOException;
 
-import util.*;
+import javasrc.util.AryUtil;
+import javasrc.util.ReadInput;
 
 public class Day17{
+
+    /** Constructor, no action.  Standard only. */
+    private Day17(){}
 
     public static void update() throws IOException {
         int fileNum = 171;                   //File number of input
@@ -51,7 +55,7 @@ public class Day17{
 
     private static int[][] rptEval(int[][] dataIn, int rpt){
         int[][] data2;
-        data2 = AryUtil.CopyInt2By(dataIn);
+        data2 = AryUtil.copyInt2By(dataIn);
         //Evaluate rules each cycle
         for(int i = 0; i < rpt; i++){
             data2 = expBy1Copy(data2);
@@ -74,7 +78,7 @@ public class Day17{
 
     private static int[][] evalCubes( int[][] from){
         int cubeCnt = 0;
-        int[][] data2 = AryUtil.CopyInt2By(from);
+        int[][] data2 = AryUtil.copyInt2By(from);
         for(int z = 0; z < from.length; z++){
             for(int y = 0; y < from[0].length; y++){
                 for(int x = 0; x < from[0].length; x++){

@@ -1,14 +1,17 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
-import util.*;
+import javasrc.util.*;
 
 public class Day10 {
+
+    /** Constructor, no action.  Standard only. */
+    private Day10(){}
 
     public static void update() throws IOException {
         int adpIn[] = ReadInput.getInputInt(10);//Get input in an array for 10(101)
         int len = adpIn.length;                 //Length of input array
-        SortAr.Sort(adpIn);                     //Sort adptors low to hi
+        SortAr.sort(adpIn);                     //Sort adptors low to hi
         int diff[] = new int[len];              //Array for diff between adptors
         //---- Part 1 ------
         int cntDiff[] = new int[4];     //[0]=not 1-3, [1]=1, [2]=2, [3]=3

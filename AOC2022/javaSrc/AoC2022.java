@@ -1,3 +1,4 @@
+package javasrc;
 //Advent of Code 2022
 /*
 Programmer: Jim Hofmann
@@ -5,7 +6,7 @@ Date Created: 12/1/2022
 */
 
 import java.io.*;
-import days.*;
+import javasrc.days.Day01;
 
 public class AoC2022 {
     public static void main(String[] arg) throws IOException{

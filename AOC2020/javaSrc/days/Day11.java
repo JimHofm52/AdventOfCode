@@ -1,11 +1,14 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
 import java.util.Arrays;
 
-import util.*;
+import javasrc.util.*;
 
 public class Day11 {
+
+    /** Constructor, no action.  Standard only. */
+    private Day11(){}
 
     public static void update() throws IOException {
         int fileNum = 11;   //File number to use
@@ -42,7 +45,7 @@ public class Day11 {
      */
     private static boolean ChgSeats(String prstSeats[], boolean part1){
         String copySeats[] = new String[prstSeats.length]; //copy for testing
-        copySeats = AryUtil.CopyStr(prstSeats);
+        copySeats = AryUtil.copyStr(prstSeats);
         for(int r = 0; r < prstSeats.length; r++ ){
             AnalRules(prstSeats, copySeats, r, part1);
         }

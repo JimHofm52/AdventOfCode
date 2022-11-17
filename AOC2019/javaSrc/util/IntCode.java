@@ -1,9 +1,9 @@
-package util;
+package javasrc.util;
 
 public class IntCode {
 
-    private IntCode(){
-    }
+    /**Constructor, not needed for standard only. */
+    private IntCode(){}
 
     /*
      *   opcode  - parm1             +  parm2             => parm3

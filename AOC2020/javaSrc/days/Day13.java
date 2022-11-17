@@ -1,10 +1,12 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
-
-import util.*;
+import javasrc.util.ReadInput;
 
 public class Day13 {
+
+    /** Constructor, no action.  Standard only. */
+    private Day13(){}
 
     public static void update() throws IOException {
         String fileNum = "13";       //File number of input

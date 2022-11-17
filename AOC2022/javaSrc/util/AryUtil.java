@@ -1,4 +1,4 @@
-package util;
+package javasrc.util;
 
 import java.util.Arrays;
 /**
@@ -6,6 +6,9 @@ import java.util.Arrays;
  * Mainly, 2d arrays.
  */
 public class AryUtil {
+    /** Constructor, not needed but used for standards. */
+    private AryUtil(){}
+
     /**
      * Copy values from an array to another array (not reference).
      * Not sure why I need this.  Could use newAry = arr.copyOf(ary)

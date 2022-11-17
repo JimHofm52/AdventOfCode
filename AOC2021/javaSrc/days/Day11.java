@@ -1,7 +1,7 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
-import util.ReadInput;
+import javasrc.util.ReadInput;
 
 public class Day11 {
     private static String fileInfo[];
@@ -9,11 +9,8 @@ public class Day11 {
     private static int[][] bdoELvl;  //Array of bioluminescent dumbo octopuses
     private static int totFlashCnt;
 
-    /**
-     * Constructor, not needed but used for standards.
-     */
-    public Day11(){
-    }
+    /** Constructor, not needed but used for standards. */
+    private Day11(){}
 
     public static void update() throws IOException {
         String fNum = "11";

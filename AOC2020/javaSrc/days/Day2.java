@@ -1,16 +1,13 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
-import util.ReadInput;
+import javasrc.util.ReadInput;
 
 public class Day2 {
     private static String fileInfo[];
 
-    /**
-     * Constructor, not needed but used for standards.
-     */
-    private Day2(){
-    }
+    /** Constructor, not needed but used for standards.  */
+    private Day2(){}
 
     public static void update() throws IOException {
         fileInfo = ReadInput.getInputStr(2);    //Get input in an array for 5

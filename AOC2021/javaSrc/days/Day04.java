@@ -1,8 +1,7 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
-
-import util.ReadInput;
+import javasrc.util.ReadInput;
 
 public class Day04 {
     private static String fileInfo[];
@@ -14,11 +13,8 @@ public class Day04 {
     private static int[] winCardInfo = new int[6];   //[0]=bi, [1]=ri, [2]=ci, 
     //                                [3]=Series sum, [4]=last Num, [5]=unmarked sum
 
-    /**
-     * Constructor, not needed but used for standards.
-     */
-    public Day04(){
-    }
+    /** Constructor, not needed but used for standards. */
+    private Day04(){}
 
     public static void update() throws IOException {
         String fNum = "04";

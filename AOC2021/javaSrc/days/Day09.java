@@ -1,20 +1,17 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
 import java.util.Arrays;
 
-import util.ReadInput;
+import javasrc.util.ReadInput;
 
 public class Day09 {
     private static String fileInfo[];
     private static int len;
     private static short[][] nums;    //Row/Col of fileInfo
 
-    /**
-     * Constructor, not needed but used for standards.
-     */
-    public Day09(){
-    }
+    /** Constructor, not needed but used for standards. */
+    private Day09(){}
 
     public static void update() throws IOException {
         String fNum = "09";

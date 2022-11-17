@@ -1,9 +1,12 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
-import util.ReadInput;
+import javasrc.util.ReadInput;
 
 public class Day9 {
+
+    /** Constructor, no action.  Standard only. */
+    private Day9(){}
 
     public static void update() throws IOException {
         long numList[] = ReadInput.getInputLong(9); //Get input in an array for 9(91)

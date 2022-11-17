@@ -1,6 +1,9 @@
-package util;
+package javasrc.util;
 
 public class SortAr {
+
+    /**Constructor, not needed for standard only. */
+    private SortAr(){}
 
     /**
      * Sort the passed array low to high.  Returned in same array.

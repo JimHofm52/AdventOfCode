@@ -1,10 +1,13 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
-
-import util.*;
+import javasrc.util.AryUtil;
+import javasrc.util.ReadInput;
 
 public class Day16{
+
+    /** Constructor, no action.  Standard only. */
+    private Day16(){}
 
     public static void update() throws IOException {
         int fileNum = 16;                   //File number of input
@@ -116,7 +119,7 @@ public class Day16{
                 } 
             }
         }
-        AryUtil.CopyInt2By(nbRslt, nbTkt); //Overwrite value with rules matched, 20 1's matches all
+        AryUtil.copyInt2By(nbRslt, nbTkt); //Overwrite value with rules matched, 20 1's matches all
         return badSum;
     }
 

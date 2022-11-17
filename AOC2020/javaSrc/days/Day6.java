@@ -1,9 +1,12 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
-import util.ReadInput;
+import javasrc.util.ReadInput;
 
 public class Day6 {
+
+    /** Constructor, no action.  Standard only. */
+    private Day6(){}
 
     public static void update() throws IOException {
         String fileInfo[];

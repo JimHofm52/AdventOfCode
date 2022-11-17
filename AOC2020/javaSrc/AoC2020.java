@@ -1,11 +1,14 @@
-//Advant of Code 2020
+package javasrc;
 /*
+Advant of Code 2020
+
 Programmer: Jim Hofmann
 Date Created: 12/5/2020
 */
 
 import java.io.*;
-import days.*;
+
+import javasrc.days.Day14;
 
 public class AoC2020 {
     public static void main(String[] arg) throws IOException{

@@ -1,12 +1,14 @@
-package util;
+package javasrc.util;
 
-import java.util.*;
 import java.io.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class ReadInput {
     
     private static String year = "AOC2021";
 
+    /** Constructor, not needed but used for standards. */
     private ReadInput(){
         throw new IllegalStateException("Utility class"); 
     }

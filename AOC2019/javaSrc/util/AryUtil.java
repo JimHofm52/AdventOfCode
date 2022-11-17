@@ -1,11 +1,16 @@
-package util;
+package javasrc.util;
 
 import java.util.Arrays;
+
 /**
  * A set of array utilities to copy, expand or append arrays.
  * Mainly, 2d arrays.
  */
 public class AryUtil {
+
+    /**Constructor, not needed for standard only. */
+    private AryUtil(){}
+        
     /**
      * Copy values from an array to another array (not reference).
      * Not sure why I need this.  Could use newAry = arr.copyOf(ary)

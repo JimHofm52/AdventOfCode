@@ -1,12 +1,15 @@
-package util;
+package javasrc.util;
 
 public class SortAr {
+
+    /** Constructor, not needed but used for standards. */
+    private SortAr(){}
 
     /**
      * Sort the passed array low to high.  Returned in same array.
      * @param inAr array to be sorted.
      */
-    public static void sort(int inAr[]){
+    public static void sort(int[] inAr){
         int ndx = 0;
         int iTmp = 0;
         boolean done = false;

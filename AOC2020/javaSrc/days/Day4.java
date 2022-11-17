@@ -1,18 +1,16 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
-import util.ReadInput;
+import javasrc.util.ReadInput;
 
 public class Day4 {
+
     private static String[] fileInfo;
     private static int len;
     private static String[] ppKey = {"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid", "cid"};
 
-    /**
-     * Constructor, not needed but used for standards.
-     */
-    private Day4(){
-    }
+    /** Constructor, no action.  Standard only. */
+    private Day4(){}
 
     public static void update() throws IOException {
         fileInfo = ReadInput.getInputStrSpS(4); //Get input in an array for Day4

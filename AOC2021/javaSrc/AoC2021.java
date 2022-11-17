@@ -1,12 +1,13 @@
-// package AoC2021;
-//Advent of Code 2021
+package javasrc;
 /*
+Advent of Code 2021
+
 Programmer: Jim Hofmann
 Date Created: 12/1/2021
 */
 
 import java.io.*;
-import days.*;
+import javasrc.days.Day11;
 
 public class AoC2021 {
     public static void main(String[] arg) throws IOException{
@@ -21,7 +22,7 @@ public class AoC2021 {
         // Day08.update();  //<===== Change to match day
         // Day09.update();  //<===== Change to match day
         // Day10.update();  //<===== Change to match day
-        // Day11.update();  //<===== Change to match day
-        Day12.update();  //<===== Change to match day
+        Day11.update();  //<===== Change to match day
+        // Day12.update();  //<===== Change to match day  -- Not completed
     }
 }

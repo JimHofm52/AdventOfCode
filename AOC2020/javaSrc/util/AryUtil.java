@@ -1,9 +1,13 @@
-package util;
+package javasrc.util;
 
 import java.util.Arrays;
 
 public class AryUtil {
-    public static int[] CopyInt(int[] from){
+
+    /**Constructor, no action.  Standard only. */
+    private AryUtil(){}
+
+    public static int[] copyInt(int[] from){
         int [] myAry = new int[from.length];
         for(int i = 0; i < from.length; i++){
             myAry[i] = from[i];
@@ -11,7 +15,7 @@ public class AryUtil {
         return myAry;
     }
 
-    public static int[][] CopyInt2By(int[][] from){
+    public static int[][] copyInt2By(int[][] from){
         int [][] myAry = new int[from.length][from[0].length];
         for(int i = 0; i < from.length; i++){
             for(int j = 0; j < from[0].length; j++){
@@ -21,7 +25,7 @@ public class AryUtil {
         return myAry;
     }
 
-    public static void CopyInt2By(int[][] from, int[][] to){
+    public static void copyInt2By(int[][] from, int[][] to){
         for(int i = 0; i < from.length; i++){
             for(int j = 0; j < from[0].length; j++){
                 to[i][j] = from[i][j];
@@ -30,7 +34,7 @@ public class AryUtil {
         return;
     }
 
-    public static int[][] CopyInt2By(int[][] from, int size){
+    public static int[][] copyInt2By(int[][] from, int size){
         int [][] myAry = new int[size][from[0].length];
         for(int i = 0; i < from.length; i++){
             for(int j = 0; j < from[1].length; j++){
@@ -40,7 +44,7 @@ public class AryUtil {
         return myAry;
     }
 
-    public static String[] CopyStr(String[] from){
+    public static String[] copyStr(String[] from){
         String [] myAry = new String[from.length];
         for(int i = 0; i < from.length; i++){
             myAry[i] = from[i];
@@ -48,7 +52,7 @@ public class AryUtil {
         return myAry;
     }
 
-    public static long[][] AppendLong2By(long[][] org, long app[][]){
+    public static long[][] appendLong2By(long[][] org, long app[][]){
         int orgLen = org.length;
         int appLen = app.length;
 

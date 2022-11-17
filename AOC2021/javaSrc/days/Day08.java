@@ -1,9 +1,9 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
 import java.util.Arrays;
 
-import util.ReadInput;
+import javasrc.util.ReadInput;
 
 public class Day08 {
     private static String fileInfo[];
@@ -11,11 +11,8 @@ public class Day08 {
     private static int[][] input;
     private static int[][] output;
 
-    /**
-     * Constructor, not needed but used for standards.
-     */
-    public Day08(){
-    }
+    /** Constructor, not needed but used for standards. */
+    private Day08(){}
 
     public static void update() throws IOException {
         String fNum = "082";

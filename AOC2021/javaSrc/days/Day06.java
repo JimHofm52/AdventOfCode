@@ -1,19 +1,15 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
-
-import util.ReadInput;
+import javasrc.util.ReadInput;
 
 public class Day06 {
     private static int[] fileInfo;
     private static int fiLen;
     private static int[] fishDay;
 
-    /**
-     * Constructor, not needed but used for standards.
-     */
-    public Day06(){
-    }
+    /** Constructor, not needed but used for standards. */
+    private Day06(){}
 
     public static void update() throws IOException {
         String fNum = "06";

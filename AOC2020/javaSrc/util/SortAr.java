@@ -1,8 +1,11 @@
-package util;
+package javasrc.util;
 
 public class SortAr {
 
-    public static void Sort(int inAr[]){
+    /** Constructor, no action. Standard only.  */
+    private SortAr(){}
+
+    public static void sort(int[] inAr){
         int ndx = 0;
         int iTmp = 0;
         boolean done = false;

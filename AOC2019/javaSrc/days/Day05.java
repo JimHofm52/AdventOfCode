@@ -1,18 +1,16 @@
-package days;
+package javasrc.days;
 
 import java.io.IOException;
-import util.ReadInput;
-import util.IntCode;
+
+import javasrc.util.IntCode;
+import javasrc.util.ReadInput;
 
 public class Day05 {
     private static int[] fileInfo;  //Define array for input type data
     private static int len;         //Length of data
 
-    /**
-     * Constructor, not needed but used for standards.
-     */
-    private Day05(){
-    }
+    /**Constructor, not needed but used for standards. */
+    private Day05(){}
 
     public static void update() throws IOException {
         String fNum = "051";
