@@ -1,4 +1,3 @@
-package javasrc;
 /*
 Advant of Code 2020
 
@@ -6,13 +5,16 @@ Programmer: Jim Hofmann
 Date Created: 12/5/2020
 */
 
-import java.io.*;
+import java.io.IOException;
 
-import javasrc.days.Day14;
+import days20.Day14;
+import util.ReadInput;
 
 public class AoC2020 {
     public static void main(String[] arg) throws IOException{
         final long startTm = System.currentTimeMillis();
+        ReadInput.year = "AoC2020";
+
         // Day1.update();  //<===== Change to match day    0.138 mS
         // Day2.update();  //<===== Change to match day    0.108 mS
         // Day3.update();  //<===== Change to match day    0.083 mS

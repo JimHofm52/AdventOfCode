@@ -1,4 +1,8 @@
 {
+    // "java.project.sourcePaths": ["javasrc"],
+    // "java.project.outputPath": "bin",
+    // "java.project.referencedLibraries": ["lib/**/*.jar"],
+
     "files.exclude": {
         "**/.classpath": true,
         "**/.project": true,
