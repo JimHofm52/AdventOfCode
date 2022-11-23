@@ -10,11 +10,15 @@ public class Day02 {
     /**Constructor, not needed but used for standards. */
     private Day02(){}
 
+    /**
+     * Create a Integer Code Computer, Intcode.  Then use it to calc the gravity assist.
+     * @throws IOException - ???
+     */
     public static void update() throws IOException {
         fileInfo = ReadInput.getInputIntCS("02");   //Get input in an array for 2
         len = fileInfo.length;                      //Length of input array
-        question1();
-        question2();
+        question1();    //Track 520625 too low,  Confirmed 3760627
+        question2();    //Track ,  Confirmed 7195
     }
 
     /**
@@ -22,7 +26,7 @@ public class Day02 {
      * memory[1] & [2] to 12 & 2 respectfully.
      */
     private static void question1() {
-        int[] memory = fileInfo.clone();
+        int[] memory = fileInfo.clone();    //Make a clone, need same copy in Q2.
         memory[1] = 12;
         memory[2] = 2;
         runIntCode(memory);
@@ -41,19 +45,19 @@ public class Day02 {
         int verb = 0;
         int nounVerb = 0;
         boolean fnd = false;
-        do{
+        do{     //noun 0 to 99
             verb = 0;
-            do{
-                int[] memory = fileInfo.clone();
-                memory[1] = noun;
-                memory[2] = verb;
-                runIntCode(memory);
-                if(memory[0] == 19690720) fnd = true;
-                if(!fnd) verb++;
+            do{     //verb 0 to 99
+                int[] memory = fileInfo.clone();    //reset memory
+                memory[1] = noun;                   //seed loc 1
+                memory[2] = verb;                   //& 2
+                runIntCode(memory);                 //run code
+                if(memory[0] == 19690720) fnd = true;   //chk if answer found
+                if(!fnd) verb++;                    //if not found, incr verb
             }while(!fnd && verb < 100);
-            if(!fnd) noun++;
+            if(!fnd) noun++;                        //if still not fnd, incr noun & do again
         }while(!fnd && noun < 100);
-        nounVerb = noun * 100 + verb;
+        nounVerb = noun * 100 + verb;               //When fnd, merge & print.
         //Track ,  Confirmed 7195
         System.out.println("\nQ2: NounVerb value: " + nounVerb + "\n");
     }

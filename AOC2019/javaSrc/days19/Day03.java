@@ -5,6 +5,9 @@ import java.io.IOException;
 import util.AryUtil;
 import util.ReadInput;
 
+/**
+ * Help the elves find the short between 2 wires.
+ */
 public class Day03 {
     private static String[] fileInfo;   //Define array for input type data
     private static int len;             //Length of data
@@ -12,10 +15,14 @@ public class Day03 {
     /**Constructor, not needed but used for standards. */
     private Day03(){}
 
+    /**
+     * Use a Manhatten address (X+Y) to ID a short between 2 wires.
+     * @throws IOException - ??
+     */
     public static void update() throws IOException {
         fileInfo = ReadInput.getInputStr("03");   //Get input in an array for 3
         len = fileInfo.length;                    //Length of input array
-        int[][] wire1, wire2;
+        int[][] wire1, wire2;               //Wires as wire?[X][Y] coor
         wire1 = parceWire2XY(fileInfo[0]);  //Wire 1 as XY coor
         wire2 = parceWire2XY(fileInfo[1]);  //Wire 2
 
@@ -25,7 +32,8 @@ public class Day03 {
     }
 
     /**
-     * Question 1: Find where the wires ccross.
+     * Question 1: Find the Manhattan distance from the central port
+     * to the closest intersection (where the wires cross).
      */
     private static int[][] question1(int[][] w1XY, int[][] w2XY) {
         int tmpI;
@@ -146,21 +154,21 @@ public class Day03 {
     }
 
     /**
-     * Parce wire path into XY coors. L/D neg. distance.
+     * Parce wire path into XY coors. U/R pos. & L/D neg. distance.
      * @param wire wire input L/R=Left/Right, D/U=Down/UP.  -/+.
      * @return 2d array of coors, XY.
      */
     private static int[][] parceWire2XY(String wire){
         int wireTurns = 2;  //Count wire turns, input, (commas) + 1 origin + 1 last one.
         for(int i = 0; i < wire.length(); i++) if(wire.charAt(i) == ',') wireTurns++;
-        int[][] coor = new int[wireTurns][2];   //X (L/R), Y (U/D).
+        int[][] coor = new int[wireTurns][2];   //X (L/R), Y (U/D). //Allocate wire nodes
 
         int[] xyCoor = new int[2];
-        int endS;
+        int endStr;
         for(int i = 1; i < wireTurns - 1; i++){
-            endS = wire.indexOf(',');
-            applyDirection(wire.substring(0, endS), xyCoor);
-            wire = wire.substring(endS + 1);
+            endStr = wire.indexOf(',');                         //Find next comma
+            applyDirection(wire.substring(0, endStr), xyCoor);
+            wire = wire.substring(endStr + 1);
             coor[i][0] = xyCoor[0];
             coor[i][1] = xyCoor[1];
         }
@@ -179,8 +187,8 @@ public class Day03 {
      * @param xyCoor to return value in 2 elemant array
      */
     private static void applyDirection(String move, int[] xyCoor){
-        int tmpI = Integer.parseInt(move.substring(1));
-        switch(move.charAt(0)){
+        int tmpI = Integer.parseInt(move.substring(1)); //Get distance, not first char.
+        switch(move.charAt(0)){     //Apply direction, first char.
             case 'L':
             xyCoor[0] -= tmpI;
             break;
