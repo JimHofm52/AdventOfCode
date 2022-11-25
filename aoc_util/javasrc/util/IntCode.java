@@ -5,66 +5,124 @@ public class IntCode {
     /**Constructor, not needed for standard only. */
     private IntCode(){}
 
-    /*
-     *   opcode  - parm1             +  parm2             => parm3
-     * <p>     1 - value pointed to  +  value pointed to  => pointed to in 3
-     * <p>   101 - value in 1st loc  +  value pointed to  => loc pointed to.
-     * <p>  1001 - value pointed to  +  value in 2nd loc  => loc pointed to.
-     * <p>  1101 - value in 1st loc  +  value in 2nd loc  => loc pointed to.
-     * <p> 11101 - value in 1st loc  +  value in 2nd loc  => output.
-     * @param memory per loaded with code to execute
-     * @return
-     */
     /**
-     * Run int code computer against instructions passed in memory.
-     * <p> opcode 1 - add values pointed to by next 2 parms & store in loc pointed to in 3
-     * <p>   11 - value in next loc + value pointed to => loc pointed to.
-     * <p>  111 - value in next loc + value in 2nd loc => loc pointed to.
-     * <p>  101 - value pointed to + value pointed to => loc pointed to.
-     * <p> 1111 - value in next loc + value in 2nd loc => output.
-     * @param memory per loaded with code to execute
-     * @return
+     * @param memory pre-loaded with code to execute
+     * @param inOut is array for input[0] & output[1]
+     * @return result 0=done, -1=Illegal memory ref, -2=Illegal opcode (not 1 to 4 or 99)
+     * <p>
+     * <p>Run int code computer against instructions passed in memory.
+     * <p> Total opcode (ABCDE), digits D & E are the actual opcode, 1 to 4 & 99.
+     * <p> Digits C, B & A are modes for parms 1, 2 & 3.
+     * <p> Mode digit value 0 means use next parm as a ptr.  A 1 as an immediate value.
+     * <p> opcode 1 - add values using the next 2 parms & store using the 3rd
+     * <p> opcode 2 - mult values using the next 2 parms & store using the 3rd
+     * <p> opcode 3 - store the value passed(?) using the next parm.  3,50 store ?? at 50 (or=>50)
+     * <p> opcode 4 - output(??) the value using the next parm.  4,50 output 50 (or+>50)
+     * <p> opcode 99 - end execution
+     * <p> Examples
+     * <p>ModeABC/Op - parm1 mode        +  parm2 mode        => parm3 mode
+     * <p>    000/01 - pointer to value  +  pointer to value  => pointer to storage
+     * <p>    001/02 - value in 1st loc  *  pointer to value  => pointer to storage
+     * <p>    010/01 - pointer to value  +  value in 2nd loc  => pointer to storage
+     * <p>    011/02 - value in 1st loc  +  value in 2nd loc  => pointer to storage
+     * <p>    111/01 - value in 1st loc  +  value in 2nd loc  => output
+     * <p>    x00/03 - pointer to value  => pointer to storage
+     * <p>    x11/03 - value in 1st loc  => output
      */
     public static int runIntCode(int[] memory, int[] inOut) {
         int instrPtr = 0;
-        int opCode, parmMode, rslt, tmp;
-        int[] parm;
-        int[] val;
-        int len = memory.length;
+        int opCode, parmModes, rslt, tmp;
+        int[] parm;    //[0]opcode, parm[1], parm2[2], parm[3]
+        int[] reg = new int[2];
 
         do{
-            opCode = memory[instrPtr] % 100;
-            parmMode = memory[instrPtr] / 100;
+            opCode = memory[instrPtr] % 100;    //Get opcode
+            parmModes = memory[instrPtr] / 100; //Get modes, strip opcode
             switch(opCode){
-                case 1:     //Add next 2, ptr+1 + ptr+2 and store in ptr+3
-                val = getValues(instrPtr, 3, memory, parmMode);
-                tmp = val[0] + val[1];
+                case 1: //add values pointed to by next 2 parms & store in loc pointed to in 3
+                parm = getParms(instrPtr, 4, memory);
+                reg[0] = parmModes % 10 == 1 ? parm[1] : memory[parm[1]];
+                parmModes /= 10;    //Strip C mode
+                reg[1] = parmModes % 10 == 1 ? parm[2] : memory[parm[2]];
+                parmModes /= 10;    //Strip B mode
+                reg[0] += reg[1];   //Value to save
 
-                parmMode /= 100;
-                if((parmMode) > 0) {
-                    inOut[1] = tmp;
+                if((parmModes % 10) > 0) {
+                    inOut[1] = reg[0];
                 }else{
-                    memory[instrPtr + 2] = tmp;
+                    memory[parm[3]] = reg[0];
                 }
                 instrPtr += 4;
                 rslt = 1;
                 break;
-                case 2:     //Multiply next 2, ptr+1 + ptr+2 and store in ptr+3
+                case 2: //mult values pointed to by next 2 parms & store in loc pointed to in 3
                 parm = getParms(instrPtr, 4, memory);
-                memory[parm[3]] = memory[parm[1]] * memory[parm[2]];
+                reg[0] = parmModes % 10 == 1 ? parm[1] : memory[parm[1]];
+                parmModes /= 10;    //Strip C mode
+                reg[1] = parmModes % 10 == 1 ? parm[2] : memory[parm[2]];
+                parmModes /= 10;    //Strip B mode
+                reg[0] *= reg[1];   //Value to save
+
+                if((parmModes % 10) > 0) {
+                    inOut[1] = reg[0];
+                }else{
+                    memory[parm[3]] = reg[0];
+                }
                 instrPtr += 4;
                 rslt = 1;
                 break;
-                case 3:     //Store input at redirect ptr+1
+                case 3: //Store value using next.  3,50 store input at mem[50] / 103,XX .. at XX
                 parm = getParms(instrPtr, 2, memory);
-                memory[parm[1]] = inOut[0];
+                reg[0] = inOut[0];  //Value to save
+                reg[1] = (parmModes % 10) == 1 ? instrPtr + 1 : parm[1];    //Save Loc
+                memory[reg[1]] = reg[0];
                 instrPtr += 2;
                 rslt = 1;
                 break;
-                case 4:     //Retrieve value at redirect ptr+1
+                case 4: //Retrieve value using next.  4,50 output mem[50] / 104,50 output 50
                 parm = getParms(instrPtr, 2, memory);
-                inOut[1] = memory[parm[1]];
+                inOut[1] = parmModes % 10 == 1 ? parm[1] : memory[parm[1]];
                 instrPtr += 2;
+                rslt = 1;
+                break;
+                case 5: //Jump if false, if next parm is not zero set iPtr parm[2] else iPtr + 3
+                parm = getParms(instrPtr, 3, memory);
+                reg[0] = parmModes % 10 == 1 ? parm[1] : memory[parm[1]];   //Value to evaluate
+                parmModes /= 10;
+                reg[1] = parmModes % 10 == 1 ? parm[2] : memory[parm[2]];   //adr to possibly store to
+                instrPtr = reg[0] != 0 ? reg[1] : instrPtr + 3;
+                rslt = 1;
+                break;
+                case 6: //Jump if true, if parm1 == 0 set iPtr to parm2 else iPtr + 3
+                parm = getParms(instrPtr, 3, memory);
+                reg[0] = parmModes % 10 == 1 ? parm[1] : memory[parm[1]];   //Value to evaluate
+                parmModes /= 10;
+                reg[1] = parmModes % 10 == 1 ? parm[2] : memory[parm[2]];   //adr to possibly store to
+                instrPtr = reg[0] == 0 ? reg[1] : instrPtr + 3;
+                rslt = 1;
+                break;
+                case 7: //If parm1 < parm2 store 1 in parm3 else store 0.
+                parm = getParms(instrPtr, 4, memory);
+                reg[0] = parmModes % 10 == 1 ? parm[1] : memory[parm[1]];   //Compare Value 1
+                parmModes /= 10;
+                reg[1] = parmModes % 10 == 1 ? parm[2] : memory[parm[2]];   //Compare Value 2
+                parmModes /= 10;
+                reg[0] = reg[0] < reg[1] ? 1 : 0;                       //Value to store
+                reg[1] = parmModes % 10 == 1 ? instrPtr + 1 : parm[3];  //Storage loc.
+                memory[reg[1]] = reg[0];    //Store it
+                instrPtr += 4;
+                rslt = 1;
+                break;
+                case 8: //If parm1 == parm2 store 1 else store 0 in parm3.
+                parm = getParms(instrPtr, 4, memory);
+                reg[0] = parmModes % 10 == 1 ? parm[1] : memory[parm[1]];   //Compare value 1
+                parmModes /= 10;
+                reg[1] = parmModes % 10 == 1 ? parm[2] : memory[parm[2]];   //Compare vaue 2
+                parmModes /= 10;
+                reg[0] = reg[0] == reg[1] ? 1 : 0;                      //Value to store
+                reg[1] = parmModes % 10 == 1 ? instrPtr + 1 : parm[3];  //mem loc.
+                memory[reg[1]] = reg[0];    //Store it
+                instrPtr += 4;
                 rslt = 1;
                 break;
                 case 99:    //Stop execution
@@ -75,7 +133,7 @@ public class IntCode {
                 System.out.println("Illegal opcode pointer: " + instrPtr);
                 rslt = -1;
                 break;
-                default:    //Illegal opCode, not 1, 2 or 99 (at this time).
+                default:    //Illegal opCode, not 1 to 4 or 99 (at this time).
                 System.out.println("Bad opcode: " + instrPtr + " at: " + memory[instrPtr]);
                 rslt = -2;
             }
@@ -83,40 +141,15 @@ public class IntCode {
         return rslt;
     }
 
-    /**
-     * Run int code computer against instructions passed in memory.
-     * @param memory per loaded with code to execute
-     * @return
-     */
-    public static int runIntCode(int[] memory){
-        int[] info = {0,0};
-        return runIntCode(memory, info);
-    }
-
-    private static int getOpcode(int[] memory, int instrPtr, int len){
-        if(instrPtr < 0 || instrPtr > len) return 100;
-        if(memory[instrPtr] % 100 == 99) return 99;   //Is ptr in memory range?
-        return memory[instrPtr] % 10;
-    }
-
-    /**
-     * Get opCode + needed parms for this opCode.
-     * @param iptr instruction pointer
-     * @param cnt count of opCode + parms
-     * @param mem memory to use.
-     * @return an array of opCode + parms values
-     */
-    private static int[] getValues(int iPtr, int cnt, int[] mem, int pMode){
-        int[] p = new int[cnt];
-        int tmpP;
-        iPtr++;
-        for(int i = 0; i < cnt; i++) {
-            tmpP = mem[iPtr + i];
-            p[iPtr + i] = pMode % 10 > 0 ? mem[tmpP] : tmpP;
-            pMode /= 10;
-        }
-        return p;
-    }
+    // /**
+    //  * Run int code computer against instructions passed in memory.
+    //  * @param memory per loaded with code to execute
+    //  * @return
+    //  */
+    // public static int runIntCode(int[] memory){
+    //     int[] info = {0,0};
+    //     return runIntCode(memory, info);
+    // }
 
     /**
      * Get opCode + needed parms for this opCode.
@@ -130,4 +163,5 @@ public class IntCode {
         for(int i = 0; i < cnt; i++) p[i] = mem[iptr + i];
         return p;
     }
+
 }
