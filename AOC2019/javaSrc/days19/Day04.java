@@ -2,7 +2,6 @@ package days19;
 
 import java.io.IOException;
 import util.ReadInput;
-import intcomputer.IntCode;
 
 public class Day04 {
     private static int[] fileInfo;   //Define array for input type data
