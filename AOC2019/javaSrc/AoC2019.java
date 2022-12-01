@@ -20,7 +20,8 @@ public class AoC2019 {
         // Day03.update();  //<===== Change to match day
         // Day03A.update();  //<===== Change to match day.  Day03 cleanup
         // Day04.update();  //<===== Change to match day
-        Day05.update();  //<===== Change to match day    ---- Not completed ----
+        // Day05.update();  //<===== Change to match day
+        Day06.update();  //<===== Change to match day
         System.out.println("Execution time: " + 
         /*      */((System.currentTimeMillis() - startTm)/1000.0));
     }
