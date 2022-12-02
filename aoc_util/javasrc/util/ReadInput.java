@@ -58,9 +58,15 @@ public class ReadInput {
 
         Scanner sf = new Scanner(file); //Open file
         int maxIndx = -1;
+        String str;
         while(sf.hasNext()){    //Read in lines from file
             maxIndx++;
-            fileIn[maxIndx] = Integer.parseInt(sf.nextLine());
+            str = sf.nextLine();
+            if(str.isEmpty()){
+                fileIn[maxIndx] = -1;
+            }else{
+                fileIn[maxIndx] = Integer.parseInt(str);
+            }
         }
         sf.close();             //Close file
 
@@ -73,7 +79,7 @@ public class ReadInput {
     }
 
     /**
-     * Read in a text file as int and return an array of int.
+     * Read in a text file as int Comma Seperated and return an array of int.
      * @param dayNum day number of the input file to evaluate
      * @return int array of values in text file.
      * @throws IOException
