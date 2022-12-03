@@ -76,6 +76,7 @@ public class Day02 {
         }
         return 0;
     }
+
     /**
      * Calc for part 2.  X, Y & Z are the lose, tie & win
      * <p> detrermine your response to XYZ for opponent play.  And score.
@@ -95,4 +96,25 @@ public class Day02 {
         }
         return 0;
     }
+
+        /**
+     * Calc score for part 1.  X, Y, Z are your responce, rock, paper, sissors.
+     * @param rps Array of your Reponses & opponent response 
+     * @return score
+     */
+    public static int calcScore1A(T_Rps rps){
+        int score = 0;
+        switch(rps.rpsOpp){
+            case 'A':    //Rock(+1) X=A/t, X<B/l, X>C=w
+            return 1 + (rps.rpsYou == 'X' ? 3 : rps.rpsOpp == 'B' ? 0 : 6);
+            case 'B':    //Paper(+2) Y>A/w, Y=B/t, Y<C=l
+            return 2 + (rps.rpsOpp == 'A' ? 6 : rps.rpsOpp == 'B' ? 3 : 0);
+            case 'C':    //Sissors (+3) Z<A/l, Z>B/w, Z=C=t
+            return 3 + (rps.rpsOpp == 'A' ? 0 : rps.rpsOpp == 'B' ? 6 : 3);
+            default:
+            System.out.println("HMmmmm 2?  You " + rps.rpsYou + ", oppenent " + rps.rpsOpp);
+        }
+        return 0;
+    }
+
 }
