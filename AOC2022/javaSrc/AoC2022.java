@@ -7,14 +7,15 @@ Date Created: 12/1/2022
 import java.io.*;
 
 import days22.Day01;
+import days22.Day02;
 import util.ReadInput;
 
 public class AoC2022 {
     public static void main(String[] arg) throws IOException{
         ReadInput.year = "AoC2022";
 
-        Day01.update();  //<===== Change to match day
-        // Day02.update();  //<===== Change to match day
+        // Day01.update();  //<===== Change to match day
+        Day02.update();  //<===== Change to match day
         // Day03.update();  //<===== Change to match day
         // Day04.update();  //<===== Change to match day
         // Day05.update();  //<===== Change to match day
