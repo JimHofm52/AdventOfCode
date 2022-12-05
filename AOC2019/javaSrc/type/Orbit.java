@@ -1,4 +1,4 @@
-package days19;
+package type;
 
 /** Type Orbit2 */
 public class Orbit{
