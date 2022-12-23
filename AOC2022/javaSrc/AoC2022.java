@@ -26,8 +26,8 @@ public class AoC2022 {
         // Day08.update();  //<===== Change to match day
         // Day09.update();  //<===== Change to match day
         // Day09A.update();  //<===== Change to match day      //rewrite of Day09 for part2
-        Day10.update();  //<===== Change to match day
-        // Day11.update();  //<===== Change to match day
+        // Day10.update();  //<===== Change to match day
+        Day11.update();  //<===== Change to match day
         // Day12.update();  //<===== Change to match day
 
         System.out.println("Execution time: " + 
