@@ -14,7 +14,7 @@ public class AoC2022 {
         final long startTm = System.currentTimeMillis();
         ReadInput.year = "AoC2022";
 
-        // Day01.update();  //<===== Change to match day   //0.136 s.
+        Day01.update();  //<===== Change to match day   //0.136 s.
         // Day01A.update();  //<===== Change to match day, simplier version    //0.126 s.
         // Day02.update();  //<===== Change to match day   //0.132 s.
         // Day03.update();  //<===== Change to match day   //0.107 s.
@@ -27,7 +27,8 @@ public class AoC2022 {
         // Day09.update();  //<===== Change to match day
         // Day09A.update();  //<===== Change to match day      //rewrite of Day09 for part2
         // Day10.update();  //<===== Change to match day
-        Day11.update();  //<===== Change to match day
+        // Day11.update();  //<===== Change to match day
+        // Day11Big.update();  //<===== Change to match day
         // Day12.update();  //<===== Change to match day
 
         System.out.println("Execution time: " + 

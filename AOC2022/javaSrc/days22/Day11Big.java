@@ -4,26 +4,27 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Arrays;
 
-import type.T_Monkey;
+import type.T_BigMonkey;
 import util.ReadInput;
 
-public class Day11 {
+public class Day11Big {
+    final static long execTm = System.currentTimeMillis();
     private static String fileInfo[];
     private static int len;
-    private static T_Monkey[] mnky;
+    private static T_BigMonkey[] mnky;
     private static int mlen = 0;
 
     /** Constructor, not needed but used for standards. */
-    private Day11(){}
+    private Day11Big(){}
 
     public static void update() throws IOException {
-        String fNum = "11"; //Part1- 54054   Part2- ???
-        // String fNum = "111";//Part1- 10605   Part2- 2713310158
+        // String fNum = "11"; //Part1- 54054   Part2- ???
+        String fNum = "111";//Part1- 10605   Part2- 2713310158
         fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         for(String s : fileInfo) if(s.contains("Monkey")) mlen++;
-        mnky = new T_Monkey[mlen];
-        for(int i = 0; i < mlen; i++) mnky[i] = new T_Monkey();
+        mnky = new T_BigMonkey[mlen];
+        for(int i = 0; i < mlen; i++) mnky[i] = new T_BigMonkey();
         parceInput(3);
 
         question1();    //Confirmed: 11- 54054   111- 10605
@@ -57,8 +58,9 @@ public class Day11 {
         }
 
         iCntr = iCnt[0] * iCnt[1];
-        //Track ,  Confirmed: 11- 231[6] * 234[7] = 54054   111- 101[0] * 105[3] = 10605
-        System.out.println("\nPart 1: The top 2 product: " + iCnt[0] * iCnt[1] + "\n");
+        //Track ,  Confirmed: 11- 54054   111- 10605
+        System.out.println("\nPart 1: Exec Tm: " + ((System.currentTimeMillis() - execTm)/1000.0));
+        System.out.println("\nPart 1: The top 2 product: " + iCnt[0] * iCnt[1]);
     }
     
     /**
@@ -75,6 +77,7 @@ public class Day11 {
             for(int m = 0; m < mlen; m++){
                 throwItems(mnky[m].evalMnky());
             }
+            System.out.println("\nLoop:" + loop + " time: " + ((System.currentTimeMillis() - execTm)/1000.0));
         }
 
         for(int m = 0; m < mlen; m++){
@@ -91,14 +94,15 @@ public class Day11 {
 
         evalCntr = evalCnt[0] * evalCnt[1];
         //Track ,  Confirmed: 11- ???   111- 52166[0] * 52013[3] = 2713310158
+        System.out.println("\nPart 2: Exec Tm: " + ((System.currentTimeMillis() - execTm)/1000.0));
         System.out.println("\nPart 2: Eval : " + Long.toUnsignedString(evalCnt[0]) + "\t" + Long.toUnsignedString(evalCnt[1]));
         System.out.println("\nPart 2: The top 2 product: " + Long.toUnsignedString(evalCntr));
     }
 
-    private static void throwItems(long[][] itemsToThrow){
+    private static void throwItems(BigInteger[][] itemsToThrow){
         if(itemsToThrow != null){
             for(int t = 0; t < itemsToThrow.length; t++){
-                mnky[(int)itemsToThrow[t][0]].addItem(itemsToThrow[t][1]);
+                mnky[itemsToThrow[t][0].intValue()].addItem(itemsToThrow[t][1]);
             }
         }
     }
@@ -116,7 +120,7 @@ public class Day11 {
                 mnky[i].clearItems();                       //Clear Items.  Needed for part 2
                 mnky[i].resetEvalCntr();                    //Reset the evaluation conter for part 2
                 tmpItem = parceLine1(line[1]);              //Read items from line 1
-                for(int s : tmpItem) mnky[i].addItem(s);    //then add items to monkey
+                for(int s : tmpItem) mnky[i].addItem(BigInteger.valueOf(s));    //then add items to monkey
                 tmp = parceLine2(line[2]);                  //Read math operation and worry parm
                 mnky[i].setMathOp(tmp % 10);                //set the math operation. 0=+, 1=*, 2=^2
                 mnky[i].setWryParm(tmp / 10);               //save the worry parm
