@@ -2,15 +2,15 @@ package type;
 
 /** Type Orbit2 */
 public class Orbit{
-    public String ctr;
-    public String orb;
-    public int parIdx; 
-    public int cnt;
+    public String ctr;  //Center of this orbit
+    public String orb;  //This Planet
+    public int ctrIdx;  //Index to ctr to speed up counting
+    public int cnt;     //cnt orbiting this planet
     
     public Orbit(){
         this.ctr = "";
         this.orb = "";
-        this.parIdx = 0;
-        this.cnt = -1;
+        this.ctrIdx = 0;
+        this.cnt = 0;
     }
 }

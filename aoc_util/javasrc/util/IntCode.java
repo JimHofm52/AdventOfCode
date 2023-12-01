@@ -3,7 +3,9 @@ package util;
 public class IntCode {
 
     /**Constructor, not needed for standard only. */
-    private IntCode(){}
+    private IntCode(){
+
+    }
 
     /**
      * @param memory pre-loaded with code to execute
@@ -16,7 +18,7 @@ public class IntCode {
      * <p> Mode digit value 0 means use next parm as a ptr.  A 1 as an immediate value.
      * <p> opcode 1 - add values using the next 2 parms & store using the 3rd
      * <p> opcode 2 - mult values using the next 2 parms & store using the 3rd
-     * <p> opcode 3 - store the value passed(?) using the next parm.  3,50 store ?? at 50 (or=>50)
+     * <p> opcode 3 - store the value passed(call) using the next parm.  3,50 store ?? at 50 (or=>50)
      * <p> opcode 4 - output(??) the value using the next parm.  4,50 output 50 (or+>50)
      * <p> opcode 99 - end execution
      * <p> Examples
@@ -31,9 +33,10 @@ public class IntCode {
      */
     public static int runIntCode(int[] memory, int[] inOut) {
         int instrPtr = 0;
-        int opCode, parmModes, rslt, tmp;
+        int opCode, parmModes, rslt;
         int[] parm;    //[0]opcode, parm[1], parm2[2], parm[3]
         int[] reg = new int[2];
+        int ioLen = inOut.length;
 
         do{
             opCode = memory[instrPtr] % 100;    //Get opcode
@@ -48,7 +51,7 @@ public class IntCode {
                 reg[0] += reg[1];   //Value to save
 
                 if((parmModes % 10) > 0) {
-                    inOut[1] = reg[0];
+                    inOut[ioLen - 1] = reg[0];
                 }else{
                     memory[parm[3]] = reg[0];
                 }
@@ -64,7 +67,7 @@ public class IntCode {
                 reg[0] *= reg[1];   //Value to save
 
                 if((parmModes % 10) > 0) {
-                    inOut[1] = reg[0];
+                    inOut[ioLen - 1] = reg[0];
                 }else{
                     memory[parm[3]] = reg[0];
                 }
@@ -73,7 +76,7 @@ public class IntCode {
                 break;
                 case 3: //Store value using next.  3,50 store input at mem[50] / 103,XX .. at XX
                 parm = getParms(instrPtr, 2, memory);
-                reg[0] = inOut[0];  //Value to save
+                reg[0] = pullInput(inOut);      //Input to save then pull other up.
                 reg[1] = (parmModes % 10) == 1 ? instrPtr + 1 : parm[1];    //Save Loc
                 memory[reg[1]] = reg[0];
                 instrPtr += 2;
@@ -81,7 +84,7 @@ public class IntCode {
                 break;
                 case 4: //Retrieve value using next.  4,50 output mem[50] / 104,50 output 50
                 parm = getParms(instrPtr, 2, memory);
-                inOut[1] = parmModes % 10 == 1 ? parm[1] : memory[parm[1]];
+                inOut[ioLen - 1] = parmModes % 10 == 1 ? parm[1] : memory[parm[1]];
                 instrPtr += 2;
                 rslt = 1;
                 break;
@@ -141,16 +144,6 @@ public class IntCode {
         return rslt;
     }
 
-    // /**
-    //  * Run int code computer against instructions passed in memory.
-    //  * @param memory per loaded with code to execute
-    //  * @return
-    //  */
-    // public static int runIntCode(int[] memory){
-    //     int[] info = {0,0};
-    //     return runIntCode(memory, info);
-    // }
-
     /**
      * Get opCode + needed parms for this opCode.
      * @param iptr instruction pointer
@@ -162,6 +155,22 @@ public class IntCode {
         int[] p = new int[cnt];
         for(int i = 0; i < cnt; i++) p[i] = mem[iptr + i];
         return p;
+    }
+
+    /**
+     * inOut[] array can have multiple inputs for use with opcode 03.
+     * <p>Each call to opcode 03 pulls [0] then pulls forward other inputs.
+     * <p>Last arrary member is the output.
+     * <p>{1,2,3,X} First call {2,3,0,X} 2nd {3,0,0,X} 3rd {0,0,0,X}
+     * @param in
+     */
+    private static int pullInput(int[] in){
+        int a = in[0];
+        for(int i = 0; i < in.length - 1; i++){
+            in[i] = in[i + 1];
+        }
+        in[in.length - 1] = 0;
+        return a;
     }
 
 }
