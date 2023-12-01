@@ -1,92 +1,114 @@
 package days23;
 
 import java.io.IOException;
-import java.util.Arrays;
 
-import type.T_Calorie;
+import type.StrNum;
 import util.ReadInput;
 
 public class Day01 {
-    private static int fileInfo[];
+    private static String[] fileInfo;
     private static int len;
-    private static T_Calorie[] elfStuff;
     /** Constructor, not needed but used for standards. */
     private Day01(){}
 
     public static void update() throws IOException {
         String fNum = "01";
-        // String fNum = "011";    //Test input - rtn 24000 calories by 4th elf
-        fileInfo = ReadInput.getInputInt(fNum);   //Get input in an array for 1
+        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
-        elfStuff = parceInput(fileInfo);
-        int a = 0;
-
-        question1(elfStuff);
-        question2(elfStuff);
+        question1();
+        question2();
     }
 
     /**
-     * Question 1: Find the most calories being carried by 1 elf.
+     * Question 1: Find the first & last digit in each string, ar1tfg3df=>12.
+     * <p>Then add them.
      */
-    private static void question1(T_Calorie[] elfSthuff) {
-        int elf = 0;
-        int fatElf = 0;
-        for(int i = 0; i < elfSthuff.length; i++){
-            if(elfSthuff[i].total > fatElf){
-                elf = i;
-                fatElf = elfSthuff[i].total;
-            }
-        }
-        //Track ,  Confirmed: 01-69310   011-2400
-        System.out.println("\nPart 1: Elf #" + (elf + 1) + " has " + fatElf + " calories.");
+    private static void question1() {
+        int[] nums = new int[len];      //first & last digits
+        parceForNums(fileInfo, nums);   //returned in nums
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++) sum += nums[i];    //add all the nums
+        //Track ,  Confirmed: 011-142   01-55130
+        System.out.println("\nPart 1: Sum 1st & last digits: " + sum);
     }
     
     /**
-     * Question 2: Find the top 3 calorie counts being carried.
+     * Question 2:  Find the first & last digit in each string, ar1tfg3df=>12.
+     * <p>Then add them.
+     * <p>But now string numbers count.  eightwo23=>8223=>83
      */
-    private static void question2(T_Calorie[] elfSthuff) {
-        int[] elf = new int[3];
-        int[] cal = new int[3];
-        int len = elfSthuff.length;
-
-        for(int j = 0; j < 3; j++){
-            for(int i = 0; i < len; i++){
-                if(elfSthuff[i].total > cal[j] && i != elf[0] && i != elf[1] && i != elf[2]){
-                    elf[j] = i;
-                    cal[j] = elfSthuff[i].total;
-                }
-            }
-        }
-
-        //Track ,  Confirmed: 01-206104, Elfs 178, 143 & 113   011-44000, Elfs 3, 2 & 5
-        System.out.println("\nPart 2:  Top 3 Elfs");
-        for(int i = 0; i < 3; i++){
-            System.out.println("\tElf #\t" + (elf[i] + 1) + " has " + cal[i] + " calories.");
-        }
-        System.out.println("Total calories for the 3: " + (cal[0]+cal[1]+cal[2]));
+    private static void question2() {
+        replStrDigits(fileInfo);    //replace str nums w/ a num eightwo=>8igh2wo
+        int[] nums = new int[len];      //first & last digits
+        parceForNums(fileInfo, nums);   //returned in nums
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++) sum += nums[i];    //add all the nums
+        //Track ,  Confirmed: 012-281, 01-54980 Lo / 54985
+        System.out.println("\nPart 2: Sum 1st & last digits: " + sum);
     }
 
     /**
-     * Create records for Elfs calories for items being carried by each.
-     * Each record holds an array of items and the total calories for this elf.
-     * @param inFile
+     * Parce for 1st & last digit in each line, qw1sdg2df=>12 or sk4fg5kk9=>49 or afs8afra=>88.
+     * @param inStr array of strings
+     * @param numRet array of numbers
+     */
+    private static void parceForNums(String[] inStr, int[] numRet){
+        String s;
+        int tmp;
+        int[] digits = new int[2];
+        for(int i = 0; i < inStr.length; i++){
+            s = inStr[i];
+            digits[0] = -1;
+            for(int j = 0; j < s.length(); j++){
+                tmp = Character.getNumericValue(s.charAt(j));
+                if(tmp <= 9 && tmp >= 0){
+                    if(digits[0] < 0) digits[0] = tmp;
+                    digits[1] = tmp;
+                }
+            }
+            numRet[i] = digits[0] * 10 + digits[1];
+        }
+    }
+
+    /**
+     * Replace string digits from left to right with single digit.
+     * <p>eight=>8ight. eightwo=>8igh2wo
+     * @param inStr
+     */
+    private static void replStrDigits(String[] inStr){
+        for(int i = 0; i < inStr.length; i++){
+            inStr[i] = findNxtRepl(inStr[i]);
+        }
+    }
+
+    /**
+     * Replace string digits from left to right with single digit.
+     * <p>eight=>8ight. eightwo=>8igh2wo
+     * @param str
      * @return
      */
-    private static T_Calorie[] parceInput(int[] inFile){
-        T_Calorie[] tmpElf = new T_Calorie[1];  //Create the first record
-        tmpElf[0] = new T_Calorie();            //and initialize it.
-
-        int rcd = 0;
-        int tmpInt;
-        for(int i = 0; i < inFile.length; i++){
-            tmpInt = inFile[i];
-            if(tmpInt < 0){             //If read in is -1, indicates a new record, next elf.
-                tmpElf = Arrays.copyOf(tmpElf, ++rcd + 1);  //Add a record
-                tmpElf[rcd] = new T_Calorie();              //and initialize it.
-            }else{
-                tmpElf[rcd].addItem(tmpInt);    //Add the item to item array and add to total.
+    private static String findNxtRepl(String str){
+        int loc;
+        int idx;
+        int tmp;
+        boolean done = false;
+        do{
+            done = true;
+            idx = 1000;
+            loc = 1000;
+            for(int i = 0; i < 10; i++){
+                tmp = str.indexOf(StrNum.getStr(i));
+                if(tmp > -1 && tmp < loc){
+                    idx = i;
+                    loc = tmp;
+                    done = false;
+                }
             }
-        }
-       return tmpElf;
+            if(!done){
+                str = str.substring(0, loc) + idx + str.substring(loc + 1);
+            }
+        }while(!done);
+        return str;
     }
+
 }
