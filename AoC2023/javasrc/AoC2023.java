@@ -14,9 +14,9 @@ public class AoC2023 {
         final long startTm = System.currentTimeMillis();
         ReadInput.year = "AoC2023";
 
-        // Day01.update();  //<===== Change to match day   //0.136 s.
-        Day02.update();  //<===== Change to match day   //0.132 s.
-        // Day03.update();  //<===== Change to match day   //0.107 s.
+        // Day01.update();  //<===== Change to match day   //0.224 s.
+        // Day02.update();  //<===== Change to match day   //0.144 s.
+        Day03.update();  //<===== Change to match day   //0.107 s.
         // Day04.update();  //<===== Change to match day   //0.122 s.
         // Day05.update();  //<===== Change to match day   //0.106 s.
         // Day05A.update();  //<===== Change to match day, using Stacks   //0.106 s.
