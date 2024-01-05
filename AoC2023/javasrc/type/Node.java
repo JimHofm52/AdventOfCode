@@ -3,8 +3,10 @@ package type;
 public class Node {
     public String str;
     public String nodeID;
-    public String[] dirID = new String[2];
-    public int[] dirIdx = new int[2];     //index set outside
+    /**Left=[0], Right[1] */
+    public String[] dirID = new String[2];  //Left=[0], Right[1]
+    /**Left=[0], Right[1] */
+    public int[] dirIdx = new int[2];   //index set outside
 
     public Node(String strIn){
         str = strIn;

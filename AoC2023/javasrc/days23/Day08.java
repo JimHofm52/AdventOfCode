@@ -9,13 +9,13 @@ public class Day08 {
     private static String fileInfo[];
     private static int len;
     private static int[] lrSeq;        //Array of left/right seq, 0=Left 1=Right
-    private static Node[] node;    
+    private static Node[] node;
 
     /** Constructor, not needed but used for standards. */
     private Day08(){}
 
     public static void update() throws IOException {
-        String fNum = "08"; //Part1- 12643   Part2- ??? 8281151997014995039 Hi 48823243223 Lo
+        String fNum = "08"; //Part1- 12643   Part2- 13133452426987 8281151997014995039 Hi 48823243223 Lo
         // String fNum = "081";//Part1- 2   Part2- na
         // String fNum = "082";//Part1- 6   Part2- na
         // String fNum = "083";//Part1- na   Part2- 6
@@ -23,8 +23,8 @@ public class Day08 {
         len = fileInfo.length;          //Length of input array
         parceInput();
 
-        // question1();    //Confirmed: 08- 12643   081- 2    082- 6
-        question2();    //Confirmed: 08- ??? 8281151997014995039 Hi 48823243223 Lo 083- 6
+        question1();    //Confirmed: 08- 12643   081- 2    082- 6
+        question2();    //Confirmed: 08- 13133452426987 8281151997014995039 Hi 48823243223 Lo 083- 6
     }
 
     /**
@@ -42,8 +42,8 @@ public class Day08 {
      * How many steps does it take before you're only on nodes that end with Z?
      */
     private static void question2() {
-        long tmp = cntMovesTo_xxZ();
-        //Track ,  Confirmed: 08- ??? 8281151997014995039 Hi 48823243223 Lo 083- 6
+        long tmp = calcMovesToAllxxZ();
+        //Track ,  Confirmed: 08- 13133452426987 8281151997014995039 Hi 48823243223 Lo 083- 6
         System.out.println("\nPart 2: Simultaneous Moves to get to all Z: " + tmp);
     }
 
@@ -51,14 +51,16 @@ public class Day08 {
      * Parce the fileInfo input to:
      * <p>1. Left/Right array of L(0) or R(1) directions.
      * <p>2. Create array of Nodes & initialize
-     * <p>3. Convert nodeID & dirID's (Strings) to nodeIdx & dirIdx
+     * <p>3. Convert nodeID & dirID's (Strings) to nodeIdx & dirIdx (int)
      */
     private static void parceInput(){
-        lrSeq = new int[fileInfo[0].length()]; //Get left/right seq, RL | LLR | ,,,
-        for(int i = 0; i < lrSeq.length; i++){
+        //Get left/right seq, RL | LLR | ,,, first line.
+        lrSeq = new int[fileInfo[0].length()]; //dimension array (length of first line)
+        for(int i = 0; i < lrSeq.length; i++){  //For each char if 'R' then save 1 else save 0
             lrSeq[i] = fileInfo[0].charAt(i) == 'R' ? 1 : 0;   //L=0; R=1
         }
 
+        //Read each line (line 3 on) as a node.  Save nodeID, leftId & rightID (Strings)
         node = new Node[len - 2];       //Create an array of Nodes
         for(int i = 2; i < len; i++){   //For each node (line) in fileInfo
             node[i - 2] = new Node(fileInfo[i]);    //Initialze a Node
@@ -68,7 +70,6 @@ public class Day08 {
             node[i].dirIdx[0] = getNodeIdxFor(node[i].dirID[0]);    //convert left dirID (String) to node index
             node[i].dirIdx[1] = getNodeIdxFor(node[i].dirID[1]);    //convert right dirID (String) to node index
         }
-        int a = 0;
     }
 
     /**
@@ -101,133 +102,88 @@ public class Day08 {
     }
 
     /**
-     * Count the moves from any mode ending in 'A' 
+     * Count the total moves from any mode ending in 'A' 
      * to all nodes ending in 'Z' simultaniously, AT THE SAME TIME.
+     * <p>Find the LCM, least common multiplier, find the largest number to speed 
+     * up the process.  Multiple the max move then modulo by each move and 
+     * see if they ALL divide evenly, equals 0.
      * @return Simultanious moves
      */
-    private static long cntMovesTo_xxZSave(){
-        long moves = 0;
-        int[] actNode = findAllIdxFor_xxA();    //Array to hold active node indexes
-        int actLR = 0;              //Active L/R index
-        int lrLen = lrSeq.length;   //Lemgth of L/R array, L=0, R=1
+    private static long calcMovesToAllxxZ(){
+        long moves = 0;     //cheat :) start at 618000000
+        int[] aNode = findAllIdxForxxA();       //Array to hold active node indexes
+        int[] zNodes = new int[aNode.length];   //Array for info
+        int[] aMoves = cntMovesToxxZ(aNode, zNodes);    //Array of moves 'A' to 'Z'
+
         boolean allZ;               //Used to check all nodes end in 'Z'
+
+        int maxMove = 0;
+        for(int i = 0; i < aMoves.length; i++) maxMove = Math.max(maxMove, aMoves[i]);
 
         do{
             allZ = true;
-            for(int i = 0; i < actNode.length; i++){        //For each active node
-                actNode[i] = node[actNode[i]].dirIdx[lrSeq[actLR]]; //Update to next node using L/R cmd
-                allZ &= node[actNode[i]].nodeID.charAt(2) == 'Z';   //Check if ends in 'Z'
+            moves++;
+            for(int i = 0; i < aNode.length; i++){        //For each active node
+                allZ &= (moves * maxMove) % aMoves[i] == 0;
+                if(!allZ) break;    //Just to speed things up
             }
-            moves++;                    //Increment moves
-            actLR = ++actLR % lrLen;    //Do next L/R then repeat L/R list
-            // System.out.println(moves);
-            // System.out.println(lrSeq[actLR]);
         }while(!allZ);  //Repeat wnile ALL nodes are not end with 'Z'
-        // for(int i = 0; i< actNode.length; i++){ 
-        //     System.out.println(node[actNode[i]].str);
-        // }
-        return moves;
-    }
-
-    /**
-     * Count the moves from any mode ending in 'A' 
-     * to all nodes ending in 'Z' simultaniously, AT THE SAME TIME.
-     * <p>Count each individual path 'A' to 'Z' then do some math.
-     * <p>Product (too Hi)  8,281,151,997,014,995,039
-     * <p>Divide each by 269 all primes (too Lo)  48,823,243,223
-     * <p> AssUmes the path repeats.
-     * TO DO: Need to check.
-     * @return
-     */
-    private static long cntMovesTo_xxZSave2(){
-        int[] actNode = findAllIdxFor_xxA();    //Array to hold active node indexes
-        long[] moves = new long[actNode.length];//Array for moves for each xxA nodes
-        int actLR = 0;
-        int lrLen = lrSeq.length;
-        boolean allZ;
-
-        for(int i = 0; i < actNode.length; i++){    //For each path 'A'
-            actLR = 0;  //Set L/R index to 0
-            do{
-                actNode[i] = node[actNode[i]].dirIdx[lrSeq[actLR]]; //Update to next node using L/R cmd
-                moves[i]++;                 //increment for this path only
-                actLR = ++actLR % lrLen;    //Do next L/R then repeat L/R list
-            }while(node[actNode[i]].nodeID.charAt(2) != 'Z');
-        }
-
-        long tmp = 1L;
-        for(int i = 0; i < actNode.length; i++){
-            moves[i] = (moves[i] / 269L);  //Try divide by 269, ALL primes.  L/R seq 269. HMMmmm?
-            tmp *= moves[i];        //Product of all path individual moves
-        }
-        return tmp;
-    }
-
-    /**
-     * Count the moves from any mode ending in 'A' 
-     * to all nodes ending in 'Z' simultaniously, AT THE SAME TIME.
-     * <p>Count each individual path 'A' to 'Z' then do some math.
-     * <p>Product (too Hi)  8,281,151,997,014,995,039
-     * <p>Divide each by 269 all primes (too Lo)  48,823,243,223
-     * <p>Math is wrong? /1000 = 19,918,080,000,000,000,000,000,000  Nope.
-     * <p> AssUmes the path repeats.
-     * 
-     * Added print to check and end of each path.
-     * @return
-     */
-    private static long cntMovesTo_xxZ(){
-        int[] actNode = findAllIdxFor_xxA();    //Array to hold active node indexes
-        long[] moves = new long[actNode.length];//Array for moves for each xxA nodes
-        int actLR = 0;
-        int lrLen = lrSeq.length;
-        boolean allZ;
-        char chz;
-        int cnt;
-        long prvMoves;
-
-        for(int i = 0; i < actNode.length; i++){    //For each path 'A'
-            actLR = 0;  //Set L/R index to 0
-            cnt = 0;
-            prvMoves = 0;
-            System.out.print("From Node Idx: " + actNode[i] + " " + node[actNode[i]].nodeID + "\t");
-            do{
-                actNode[i] = node[actNode[i]].dirIdx[lrSeq[actLR]]; //Update to next node using L/R cmd
-                moves[i]++;                 //increment for this path only
-                actLR = ++actLR % lrLen;    //Do next L/R then repeat L/R list
-                chz = node[actNode[i]].nodeID.charAt(2);
-                if(chz == 'Z'){
-                    System.out.print("To Idx: " + actNode[i] + " " + node[actNode[i]].str);
-                    System.out.print("Moves: " + moves[i] + " Prv Moves: " + (moves[i] - prvMoves));
-                    System.out.println(" L/R Idx: " + actLR + "\t Cmd: " + lrSeq[actLR]);
-                    cnt++;
-                    prvMoves = moves[i];
-                }
-            }while(!((chz == 'Z') && (cnt == 5)));
-        }
-
-        long tmp = 1L;
-        for(int i = 0; i < actNode.length; i++){
-            moves[i] = ((moves[i] + 500L) / 1000L);  //Try divide by 269, ALL primes.  L/R seq 269. HMMmmm?
-            tmp *= moves[i];        //Product of all path individual moves
-        }
-        return tmp;
+        pntInfoPart2(aNode, zNodes, aMoves);
+        return moves * maxMove;
     }
 
     /**
      * Find all the nodes that end in 'A'.  Starting nodes for part 2.
+     * <p>And cnt the moves to get from here "xxA" to "xxZ" for those nodes.  
+     * Save in node[i].xxAPath Length
      * @return an array of nodes that end in 'A'
      */
-    private static int[] findAllIdxFor_xxA(){
+    private static int[] findAllIdxForxxA(){
         int cnt = 0;
-        for(Node n : node) if(n.nodeID.charAt(2) == 'A') cnt++;
-        int[] aNode = new int[cnt];
+        for(Node n : node) if(n.nodeID.charAt(2) == 'A') cnt++; //Cnt 'A' nodes
+        int[] aNode = new int[cnt];     //Create an array
 
+        //Fill in the array with the node index.
         cnt = 0;
         for(int i = 0; i < node.length; i++){
             if(node[i].nodeID.charAt(2) == 'A'){
                 aNode[cnt++] = i; 
             }
         }
+
         return aNode;
     }
+ 
+    /**
+     * 
+     * @param aNodeIdxs
+     * @param zNodeIdxs
+     * @return
+     */
+    private static int[] cntMovesToxxZ(int[] aNodeIdxs, int[] zNodeIdxs){
+        int actLR;
+        int actNode;
+        int[] aMoves = new int[aNodeIdxs.length];
+        for(int i = 0; i < aNodeIdxs.length; i++){
+            actNode = aNodeIdxs[i];
+            aMoves[i] = 0;
+            actLR = 0;
+            do{
+                actNode = node[actNode].dirIdx[lrSeq[actLR]];
+                aMoves[i]++;                        //increment for this path only
+                actLR = ++actLR % lrSeq.length;     //Do next L/R then repeat L/R list
+           }while(node[actNode].nodeID.charAt(2) != 'Z');
+           zNodeIdxs[i] = actNode;
+        }
+        return aMoves;
+    }
+ 
+    private static void pntInfoPart2(int[] aNodeIdxs, int[] zNodeIdxs, int[] aMoves){
+        for(int i = 0; i < aNodeIdxs.length; i++){
+            System.out.println("Starting at: " + node[aNodeIdxs[i]].nodeID + ", node index: " + aNodeIdxs[i]);
+            System.out.println("\tfound: " + aMoves[i]);
+            System.out.println("\tto Node: " + node[zNodeIdxs[i]].nodeID + ", node index: " + zNodeIdxs[i]);
+        }
+    }
+ 
 }
