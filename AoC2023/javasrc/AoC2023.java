@@ -22,7 +22,7 @@ public class AoC2023 {
         // Day06.update();  //<===== Change to match day   //0.136 s.
         // Day07.update();  //<===== Change to match day   //0.291 s.
         // Day08.update();  //<===== Change to match day   //7.549 s.
-        Day09.update();  //<===== Change to match day
+        Day09.update();  //<===== Change to match day   //0.157 s.
         // Day10.update();  //<===== Change to match day
         // Day11.update();  //<===== Change to match day
         // Day11Big.update();  //<===== Change to match day
