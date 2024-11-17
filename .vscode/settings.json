@@ -1,11 +1,14 @@
 {
     "java.project.sourcePaths": [
         "aoc_util/javasrc",
+        "aoc2024/javasrc",
+        "aoc2023/javasrc",
+        "aoc2018/javasrc",
         "AoC2022/javasrc",
         "AOC2021/javasrc",
         "AOC2020/javasrc",
         "AOC2019/javasrc",
-        "AoC2023/javasrc"
+        "aoc2015/javasrc"
     ],
 
     "files.exclude": {

@@ -65,7 +65,8 @@ public class ReadInput {
             if(str.isEmpty()){
                 fileIn[maxIndx] = -1;
             }else{
-                fileIn[maxIndx] = Integer.parseInt(str);
+                fileIn[maxIndx] = Integer.parseInt(str.trim());
+                int a = 0;
             }
         }
         sf.close();             //Close file

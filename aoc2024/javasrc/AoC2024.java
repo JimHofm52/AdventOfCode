@@ -5,13 +5,13 @@ Date Created: 12/1/2023
 */
 import java.io.*;
 import util.ReadInput;
-import days23.*;
+import days24.*;
 
 
-public class AoC2023 {
+public class AoC2024 {
     public static void main(String[] arg) throws IOException{
         final long startTm = System.currentTimeMillis();
-        ReadInput.year = "AoC2023";
+        ReadInput.year = "AoC2024";
 
         Day01.update();  //<===== Change to match day   //0.224 s.
         // Day02.update();  //<===== Change to match day   //0.144 s.

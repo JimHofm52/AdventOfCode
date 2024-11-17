@@ -26,6 +26,17 @@ public class AryUtil {
     }
 
     /**
+     * @param from array to copy from
+     * @param val value to append
+     * @return a new array with original array plus appended value.
+     */
+    public static int[] appendInt(int[] from, int val){
+        int[] myAry = Arrays.copyOf(from, from.length + 1);
+        myAry[myAry.length - 1] = val;
+        return myAry;
+    }
+
+    /**
      * Copy values from a 2d array and return a new 2d array (not reference).
      * @param from 2d array to copy from.
      * @return a new 2d array with copied values.

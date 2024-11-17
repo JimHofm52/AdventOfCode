@@ -12,7 +12,7 @@ public class Day01 {
     private Day01(){}
 
     public static void update() throws IOException {
-        String fNum = "011";     //01-55130  02-54985
+        String fNum = "01";     //01-55130  02-54985
         // String fNum = "011";    //011-142   012-XX
         // String fNum = "012";    //011-xx    012-281
         fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
