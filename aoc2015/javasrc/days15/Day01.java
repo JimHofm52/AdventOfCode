@@ -16,8 +16,8 @@ public class Day01{
         fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
-        question1();    //Confirmed: 01- 280   011- ???
-        question2();    //Confirmed: 01- 1797   011- ???
+        question1();    //Confirmed: 01- 280   011- n/a
+        question2();    //Confirmed: 01- 1797   011- n/a
     }
 
     /**
@@ -27,8 +27,12 @@ public class Day01{
      * Starting at Floor 0, To what floor do the instructions take Santa?
      */
     private static void question1() {
-        //Track ,  Confirmed: 01- 280   011- ???
-        System.out.println("\nPart 1: Last floor Santa entered is " + findFloor());
+        int lastFloor = 0;
+        for(int upDn = 0; upDn < fileInfo[0].length(); upDn++){
+            lastFloor += fileInfo[0].charAt(upDn) == '(' ? 1 : -1;
+        }
+        //Track ,  Confirmed: 01- 280   011- n/a
+        System.out.println("\nPart 1: Last floor Santa entered is " + lastFloor);
     }
     
     /**
@@ -36,32 +40,13 @@ public class Day01{
      * Santa to first enter the basement?
      */
     private static void question2() {
-        //Track ,  Confirmed: 04- 1797   011- ???
-        System.out.println("\nPart 2: Santa enters the basement on move " + findBsmnt());
-    }
-
-    /**
-     * Part 1;
-     * @return Starting on floor 0, the floor number after moving up, '(', or down, ')'.
-     */
-    private static int findFloor(){
         int lastFloor = 0;
-        for(int upDn = 0; upDn < fileInfo[0].length(); upDn++){
+        int upDn = 0;
+        for(; upDn < fileInfo[0].length(); upDn++){
             lastFloor += fileInfo[0].charAt(upDn) == '(' ? 1 : -1;
+            if(lastFloor == -1) break;
         }
-        return lastFloor;
-    }
-
-    /**
-     * Part 2;
-     * @return Starting on floor 0, the first move number that jumps to the basement.
-     */
-    private static int findBsmnt(){
-        int lastFloor = 0;
-        for(int upDn = 0; upDn < fileInfo[0].length(); upDn++){
-            lastFloor += fileInfo[0].charAt(upDn) == '(' ? 1 : -1;
-            if(lastFloor == -1) return upDn + 1;
-        }
-        return -1;
+        //Track ,  Confirmed: 04- 1797   011- n/a
+        System.out.println("\nPart 2: Santa enters the basement on move " + (upDn + 1));
     }
 }

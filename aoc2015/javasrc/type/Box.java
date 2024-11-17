@@ -1,6 +1,7 @@
 package type;
 /**
- * Ex. 29x13x26
+ * Every present is a box in the shape of a perfect right rectangular prism.
+ * Ex. 29x13x26 (lxwxh)
  */
 public class Box {
     private String strIn;
@@ -28,14 +29,10 @@ public class Box {
      */
     public Box(String dim){
         strIn = dim;
-        beg = 0;
-        end = dim.indexOf('x');
-        length = Integer.parseInt(dim.substring(beg, end));
-        beg = end + 1;
-        end = dim.indexOf('x', beg);
-        width = Integer.parseInt(dim.substring(beg, end));
-        beg = end + 1;
-        height = Integer.parseInt(dim.substring(beg));
+        String[] valStr = strIn.split("x");
+        length = Integer.parseInt(valStr[0]);
+        width = Integer.parseInt(valStr[1]);
+        height = Integer.parseInt(valStr[2]);
 
         areaSideLxW = 2 * length * width;
         areaSideLxH = 2 * length * height;
@@ -52,8 +49,10 @@ public class Box {
         totalVol = length * width * height;
     }
 
+    /** @return the total surface area of the perfect right rectangular prism. */
     public int getTotalArea(){ return totalArea; }
+    /** @return the perimeter of the side with the smallest area. */
     public int getMinPerim(){ return minPerim; }
+    /** @return the total volumn of the perfect right rectangular prism. */
     public int getTotalVol(){ return totalVol; }
-
 }
