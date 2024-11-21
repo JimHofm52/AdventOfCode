@@ -14,12 +14,12 @@ public class AoC2015 {
         ReadInput.year = "aoc2015";
 
         // Day01.update();  //<===== Change to match day   //0.117 s.
-        Day02.update();  //<===== Change to match day   //0.157 s.
+        // Day02.update();  //<===== Change to match day   //0.157 s.
         // Day03.update();  //<===== Change to match day   //0.277 s.
         // Day04.update();  //<===== Change to match day   //2.12 s.
         // Day05.update();  //<===== Change to match day   //0.239 s.
         // Day06.update();  //<===== Change to match day   //0.309 s.
-        // Day07.update();  //<===== Change to match day   //0.291 s.
+        Day07.update();  //<===== Change to match day   //0.177 s.
 
         // Day08.update();  //<===== Change to match day   //7.549 s.
         // Day09.update();  //<===== Change to match day   //0.157 s.
