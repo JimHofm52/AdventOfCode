@@ -12,8 +12,7 @@ public class DayXX {
     private DayXX(){}
 
     public static void update() throws IOException {
-        // String fNum = "01"; //Part1- ???   Part2- ???
-        String fNum = "011";//Part1- ???   Part2- ???
+        String fNum = "01";//Part1- ???   Part2- ???
         fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
