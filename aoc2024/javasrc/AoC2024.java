@@ -13,7 +13,7 @@ public class AoC2024 {
         final long startTm = System.currentTimeMillis();
         ReadInput.year = "AoC2024";
 
-        Day01.update();  //<===== Change to match day   //0.224 s.
+        Day01.update();  //<===== Change to match day   //0.208 s.
         // Day02.update();  //<===== Change to match day   //0.144 s.
         // Day03.update();  //<===== Change to match day   //0.275 s.
         // Day04.update();  //<===== Change to match day   //0.163 s.
