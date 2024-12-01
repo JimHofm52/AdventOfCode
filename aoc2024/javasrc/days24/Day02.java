@@ -8,7 +8,10 @@ public class Day02 {
     private static String fileInfo[];
     private static int len;
 
-    /** Constructor, not needed but used for standards. */
+    /** Constructor, not needed but used for standards.
+     * <p>Started Dec 2, 2024,  Finished on Dec 2, 2024.
+     * <p>Took ~xx hour.  Runtime 0.yyy S.
+     */
     private Day02(){}
 
     public static void update() throws IOException {

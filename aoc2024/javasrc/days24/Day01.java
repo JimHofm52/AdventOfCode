@@ -9,7 +9,11 @@ public class Day01 {
     private static String fileInfo[];
     private static int len;
 
-    /** Constructor, not needed but used for standards. */
+    /**
+     * Constructor, not needed but used for standards.
+     * <p>Started Dec 1, 2024,  Finished on Dec 1, 2024.
+     * <p>Took ~1 hour.  Runtime 0.208.  Done!
+     */
     private Day01(){}
 
     public static void update() throws IOException {
@@ -20,12 +24,16 @@ public class Day01 {
         int[] rightNum = new int[len];
         parceInput(leftNum, rightNum);
 
-        question1(leftNum, rightNum);    //Confirmed: 01- 3569916   011- 11
+        question1(leftNum, rightNum);    //Confirmed: 01- 3569916    011- 11
         question2(leftNum, rightNum);    //Confirmed: 01- 26407426   011- 31
     }
 
     /**
-     * Question 1: Number of possible PWs meeting the criteria:
+     * Question 1: Within each pair, figure out how far apart the two numbers are; 
+     * you'll need to add up all of those distances.
+     * 
+     * Your actual left and right lists contain many location IDs. What is 
+     * the total distance between your lists?
      */
     private static void question1(int[] lNum, int[] rNum) {
         int diff = 0;
@@ -35,7 +43,12 @@ public class Day01 {
     }
     
     /**
-     * Question 2: Number of possible PWs meeting the criteria:
+     * Question 2: This time, you'll need to figure out exactly how often each 
+     * number from the left list appears in the right list. Calculate a 
+     * total similarity score by adding up each number in the left list after 
+     * multiplying it by the number of times that number appears in the right list.
+     * 
+     * What is their similarity score?
      */
     private static void question2(int[] lNum, int[] rNum) {
         int sim = 0;
