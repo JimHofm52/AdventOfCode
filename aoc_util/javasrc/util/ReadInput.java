@@ -183,8 +183,10 @@ public class ReadInput {
      * @return string with full path/filename
      */
     private static String getFilePath(String dayNum){
-        String fDir = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCode\\" +
-                       year + "\\javaSrc\\textIn";
+        // String fDir = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCode\\" +
+        //                year + "\\javaSrc\\textIn";
+        String fDir = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCodeInput\\" +
+                       year;
         String fName = "Day" + dayNum + "Input.txt";
         return fDir + "\\" + fName;
     }
