@@ -11,6 +11,13 @@ public class AryUtil {
     /** Constructor, not needed but used for standards. */
     private AryUtil(){}
 
+    public static int[] getIntAry(String strIn){
+        return Arrays.stream(strIn.split(" "))
+                     .mapToInt(Integer::parseInt)
+                     .toArray();
+    }
+            
+
     /**
      * Copy values from an array to another array (not reference).
      * Not sure why I need this.  Could use newAry = arr.copyOf(ary)
