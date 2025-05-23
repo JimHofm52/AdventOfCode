@@ -3,7 +3,6 @@ package days24;
 import java.io.IOException;
 
 import type.Equation;
-import util.AryUtil;
 import util.ReadWriteFiles;
 
 public class Day07 {
@@ -11,8 +10,8 @@ public class Day07 {
     private static int len;
 
     /** Constructor, not needed but used for standards. 
-     * <p>Started May 23, 2025,  Finished on Dec 7, 20??.
-     * <p>Took ~xx hour.  Runtime 0.yyy S.
+     * <p>Started May 23, 2025,  Finished on May 23, 2025.
+     * <p>Took ~12 hour.  Runtime 1.646 S.
     */
     private Day07(){}
 
