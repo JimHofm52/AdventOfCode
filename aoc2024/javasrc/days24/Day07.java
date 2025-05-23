@@ -17,7 +17,7 @@ public class Day07 {
     private Day07(){}
 
     public static void update() throws IOException {
-        String fNum = "07";//Part1- 1708857123053   Part2- ???
+        String fNum = "07";//Part1- 1708857123053   Part2- 189207836795655
         fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
@@ -25,30 +25,34 @@ public class Day07 {
         for(int i = 0; i < len; i++){
             eq[i] = new Equation(fileInfo[i]);
         }
-        //13282106: 9 7 244 864 689 9
-        //13282106: 9 7 244 864 689 9
+
         question1(eq);    //Confirmed: 07- 1708857123053 lo-28954329702   071- 3749
-        question2();    //Confirmed: 07- ???   071- ???
+        question2(eq);    //Confirmed: 07- 189207836795655   071- 11387
     }
 
     /**
-     * Question 1: Determine which equations could possibly be true. 
-     * What is their total calibration result?
+     * Question 1: Using your new knowledge of elephant hiding spots, 
+     * determine which equations could possibly be true using the new 
+     * concoctenation op, 12 || 345 = 12345.  What is their total calibration result?
      */
     private static void question1(Equation[] eqIn) {
         long totEq = 0;
         for(Equation eq : eqIn){
-            if(eq.isEqOK()) totEq += eq.getAnswer();
+            if(eq.isEqOK1()) totEq += eq.getAnswer();
         }
         //Track ,  Confirmed: 07- 1708857123053  lo-28954329702  071- 3749
-        System.out.println("\nPart 1: Total of OK equations: \n" + totEq); // + "\n" + totEq1);
+        System.out.println("\nPart 1: Total of OK equations: " + totEq);
     }
     
     /**
      * Question 2: Number of possible PWs meeting the criteria:
      */
-    private static void question2() {
-        //Track ,  Confirmed: 07- ???   071- ???
-        // System.out.println("\nPart 2: ???: " + pwOKCnt);
+    private static void question2(Equation[] eqIn) {
+        long totEq = 0;
+        for(Equation eq : eqIn){
+            if(eq.isEqOK2()) totEq += eq.getAnswer();
+        }
+        //Track ,  Confirmed: 07- 189207836795655   071- 11387
+        System.out.println("\nPart 2: Total of OK equations: " + totEq);
     }
 }

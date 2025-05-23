@@ -10,7 +10,8 @@ public class Equation {
     private long answer;
     private int[] num;
     private int[] op;
-    private boolean eqOK = false;   //Equation can be solved with + & *.
+    private boolean eqOK1 = false;  //Equation can be solved with + & *.
+    private boolean eqOK2 = false;  //Equation can be solved with + & * & ||.
 
     /**
      * Parced data, IE. 7290: 6 8 6 15, answer: num1 num2 num3 ...
@@ -23,7 +24,8 @@ public class Equation {
         answer = parceAnswer(inStr);
         num = parceNums(inStr);
         op = new int[num.length - 1];   //0 = add, 1 = multiple
-        eqOK = evalEq(answer, num, op);
+        eqOK1 = evalEq(answer, num, op, false);
+        eqOK2 = evalEq(answer, num, op, true);
     }
 
     /**
@@ -55,26 +57,28 @@ public class Equation {
      * @param opIn
      * @return true if equal.
      */
-    private static boolean evalEq(long ansIn, int[] numIn, int[] opIn){
-        int tmpi = (int)Math.pow(2, opIn.length);
+    private static boolean evalEq(long ansIn, int[] numIn, int[] opIn, boolean isPart2){
+        int opCnt = isPart2 ? 3 : 2;    //Part1: 2^length, Part2: 3^length possible combinations
+        int tmpi = (int)Math.pow(opCnt, opIn.length);
         for(int i = 0; i < (tmpi); i++){
-            // opCombo = calcEq(numIn, opIn);
             if(ansIn == calcEq(numIn, opIn)){
                 return true;
             }
-            stepOps(opIn);
+            stepOps2(opIn, isPart2);
         }
-        int a = 0;
         return false;
     }
 
     /**
-     * increment thru the ops: 000 > 100 > 010 > 110 > 001 > 101 > 011 > 111. 
+     * increment thru the ops: 
+     * <p>Part 1: 000 > 100 > 010 > 110 > 001 > 101 > 011 > 111.
+     * <p>Part 2: 000 > 100 > 200 > 010 > 110 > 210 > 020 > 120 > 220 > 002 ... 222 
      * @param opIn int array to be incremented.
      */
-    private static void stepOps(int[] opIn){
+    private static void stepOps2(int[] opIn, boolean isPart2){
+        int part = isPart2 ? 2 : 1;
         for(int i = 0; i < opIn.length; i++){
-            if(++opIn[i] > 1){  //carry
+            if(++opIn[i] > part){  //carry
                 opIn[i] = 0;
             }else{
                 break;
@@ -93,6 +97,7 @@ public class Equation {
             System.out.println("num & op count not compatable: num = " + numIn.length + " op = " + opIn.length);
             return -1;
         }
+
         long tmpNum = numIn[0];
         for(int n = 0; n < numIn.length - 1; n++){
             switch(opIn[n]){
@@ -101,6 +106,11 @@ public class Equation {
                 break;
                 case 1:
                     tmpNum *= numIn[n + 1];
+                break;
+                case 2: //Concoctenate - 12 || 345 = 12345
+                    int numDigits = String.valueOf(numIn[n + 1]).length();
+                    tmpNum *= Math.pow(10, numDigits);
+                    tmpNum += numIn[n + 1];
                 break;
                 default:
                     System.out.println("Illegal operand: " + opIn[n]);
@@ -115,7 +125,10 @@ public class Equation {
     /** @return The numbers used in the equation. */
     public int[] getNums(){return num;}
 
-    /** @return true if equation is solvable.  */
-    public boolean isEqOK(){return eqOK;}
+    /** @return true if equation is solvable with + & *.  */
+    public boolean isEqOK1(){return eqOK1;}
+
+    /** @return true if equation is solvable with + & * & ||.  */
+    public boolean isEqOK2(){return eqOK2;}
 
 }
