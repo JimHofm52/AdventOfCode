@@ -2,7 +2,7 @@ package days24;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day05 {
     private static String fileInfo[];
@@ -16,7 +16,7 @@ public class Day05 {
 
     public static void update() throws IOException {
         String fNum = "05";//Part1- 3608   Part2- 4922
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
         int brk = 0;
@@ -92,7 +92,7 @@ public class Day05 {
         int[] num;
         //parce updates
         for(int i = brk; i < len; i++){
-            inUpd[i - brk] = ReadInput.parceStrIntCS(inStr[i]);
+            inUpd[i - brk] = ReadWriteFiles.parceStrIntCS(inStr[i]);
         }
     }
 

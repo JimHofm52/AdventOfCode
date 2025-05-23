@@ -2,7 +2,7 @@ package days19;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day01 {
     private static int fileInfo[];  //Array for weight of modules
@@ -18,7 +18,7 @@ public class Day01 {
      * @throws IOException - ????
      */
     public static void update() throws IOException {
-        fileInfo = ReadInput.getInputInt("01");   //Get input in an array for 19
+        fileInfo = ReadWriteFiles.getInputInt("01");   //Get input in an array for 19
         int len = fileInfo.length;          //Length of input array
 
         System.out.println("Total modules: " + len);

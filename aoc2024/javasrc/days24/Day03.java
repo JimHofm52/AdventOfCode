@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day03 {
     private static String fileInfo[];
@@ -19,7 +19,7 @@ public class Day03 {
 
     public static void update() throws IOException {
         String fNum = "03";//Part1- 188192787   Part2- ???
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
         question1();    //Confirmed: 03- 188192787   031- 161 (2*4 + 5*5 + 11*8 + 8*5)

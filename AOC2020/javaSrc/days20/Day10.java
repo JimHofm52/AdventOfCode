@@ -2,7 +2,7 @@ package days20;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 import util.SortAr;
 
 public class Day10 {
@@ -11,7 +11,7 @@ public class Day10 {
     private Day10(){}
 
     public static void update() throws IOException {
-        int adpIn[] = ReadInput.getInputInt(10);//Get input in an array for 10(101)
+        int adpIn[] = ReadWriteFiles.getInputInt(10);//Get input in an array for 10(101)
         int len = adpIn.length;                 //Length of input array
         SortAr.sort(adpIn);                     //Sort adptors low to hi
         int diff[] = new int[len];              //Array for diff between adptors

@@ -8,12 +8,12 @@ Date Created: 12/5/2020
 import java.io.IOException;
 
 import days20.Day14;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class AoC2020 {
     public static void main(String[] arg) throws IOException{
         final long startTm = System.currentTimeMillis();
-        ReadInput.year = "AoC2020";
+        ReadWriteFiles.year = "AoC2020";
 
         // Day1.update();  //<===== Change to match day    0.138 mS
         // Day2.update();  //<===== Change to match day    0.108 mS

@@ -2,7 +2,7 @@ package days23;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 import type.Pipe;
 
 public class Day10 {
@@ -16,7 +16,7 @@ public class Day10 {
     public static void update() throws IOException {
         String fNum = "10"; //Part1- ???   Part2- ???
         // String fNum = "101";//Part1- ???   Part2- ???
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         // testInput();
         locXY = findS();

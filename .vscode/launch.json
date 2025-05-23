@@ -1,0 +1,70 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "AoC2015",
+            "request": "launch",
+            "mainClass": "AoC2015",
+            "projectName": "AdventOfCode_73701b92"
+        },
+        {
+            "type": "java",
+            "name": "AoC2018",
+            "request": "launch",
+            "mainClass": "AoC2018",
+            "projectName": "AdventOfCode_73701b92"
+        },
+        {
+            "type": "java",
+            "name": "AoC2019",
+            "request": "launch",
+            "mainClass": "AoC2019",
+            "projectName": "AdventOfCode_73701b92"
+        },
+        {
+            "type": "java",
+            "name": "AoC2020",
+            "request": "launch",
+            "mainClass": "AoC2020",
+            "projectName": "AdventOfCode_73701b92"
+        },
+        {
+            "type": "java",
+            "name": "AoC2021",
+            "request": "launch",
+            "mainClass": "AoC2021",
+            "projectName": "AdventOfCode_73701b92"
+        },
+        {
+            "type": "java",
+            "name": "AoC2022",
+            "request": "launch",
+            "mainClass": "AoC2022",
+            "projectName": "AdventOfCode_73701b92"
+        },
+        {
+            "type": "java",
+            "name": "AoC2023",
+            "request": "launch",
+            "mainClass": "AoC2023",
+            "projectName": "AdventOfCode_73701b92"
+        },
+        {
+            "type": "java",
+            "name": "AoC2024",
+            "request": "launch",
+            "mainClass": "AoC2024",
+            "projectName": "AdventOfCode_73701b92"
+        }
+    ]
+}

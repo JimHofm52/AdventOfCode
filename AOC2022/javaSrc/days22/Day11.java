@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 
 import type.T_Monkey;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day11 {
     private static String fileInfo[];
@@ -19,7 +19,7 @@ public class Day11 {
     public static void update() throws IOException {
         String fNum = "11"; //Part1- 54054   Part2- ???
         // String fNum = "111";//Part1- 10605   Part2- 2713310158
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         for(String s : fileInfo) if(s.contains("Monkey")) mlen++;
         mnky = new T_Monkey[mlen];

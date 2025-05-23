@@ -3,7 +3,7 @@ package days18;
 import java.io.IOException;
 
 import type.Design;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day03 {
     private static String fileInfo[];
@@ -16,7 +16,7 @@ public class Day03 {
 
     public static void update() throws IOException {
         String fNum = "03"; //Part1- 100595   Part2- ???
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         elfDesign = new Design[len];
         for(int i = 0; i < len; i++) elfDesign[i] = new Design(fileInfo[i]);

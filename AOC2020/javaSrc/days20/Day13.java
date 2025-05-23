@@ -2,7 +2,7 @@ package days20;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day13 {
 
@@ -11,7 +11,7 @@ public class Day13 {
 
     public static void update() throws IOException {
         String fileNum = "13";       //File number of input
-        String readIn[] = ReadInput.getInputStr(fileNum);// Get input in an array for 13(131)
+        String readIn[] = ReadWriteFiles.getInputStr(fileNum);// Get input in an array for 13(131)
         int dTime = Integer.parseInt(readIn[0]);    //Depart time
         int schd[][] = ParceIn(readIn[1]);          //Schdules, [0]Repeat time [1]Offset
         int len = schd[0].length;                   //Length of input schd items

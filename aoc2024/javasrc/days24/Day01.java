@@ -2,7 +2,7 @@ package days24;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 import util.SortAr;
 
 public class Day01 {
@@ -18,7 +18,7 @@ public class Day01 {
 
     public static void update() throws IOException {
         String fNum = "01";//Part1- 3569916   Part2- 26407426
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         int[] leftNum = new int[len];
         int[] rightNum = new int[len];

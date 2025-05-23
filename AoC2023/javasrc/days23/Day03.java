@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import type.Engine;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day03 {
     private static String fileInfo[];
@@ -17,7 +17,7 @@ public class Day03 {
         String fNum = "03";     //Part1- 538046   Part2- 81709807
         // String fNum = "032";    //Part1- xxx    Part2- 467835
         // String fNum = "031";    //Part1- 4361   Part2- xxx
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         Engine engList[] = new Engine[len];
         for(int e = 0; e < len; e++) engList[e] = new Engine(fileInfo[e]);

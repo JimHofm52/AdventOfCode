@@ -2,7 +2,7 @@ package days20;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day5 {
 
@@ -11,7 +11,7 @@ public class Day5 {
 
     public static void update() throws IOException {
         String fileInfo[];
-        fileInfo = ReadInput.getInputStr(5);   //Get input in an array for 5
+        fileInfo = ReadWriteFiles.getInputStr(5);   //Get input in an array for 5
         int len = fileInfo.length;          //Length of input array
 
         int seatRow = 0;

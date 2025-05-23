@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import type.House;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day03 {
     private static String fileInfo[];
@@ -15,7 +15,7 @@ public class Day03 {
 
     public static void update() throws IOException {
         String fNum = "03";//Part1- 2081   Part2- 2341
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
         question1();    //Confirmed: 03- 2081   031a: 2, b: 4, c: 2

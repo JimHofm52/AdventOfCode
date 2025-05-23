@@ -1,7 +1,7 @@
 package days19;
 
 import java.io.IOException;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day04 {
     private static int[] fileInfo;   //Define array for input type data
@@ -11,7 +11,7 @@ public class Day04 {
     private Day04(){}
 
     public static void update() throws IOException {
-        fileInfo = ReadInput.getInputInt("04");   //Get input in an array for 4
+        fileInfo = ReadWriteFiles.getInputInt("04");   //Get input in an array for 4
         len = fileInfo.length;                    //Length of input array
 
         question1(fileInfo[0], fileInfo[1]);     //Confirmed: 04-931

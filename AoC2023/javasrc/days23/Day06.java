@@ -3,7 +3,7 @@ package days23;
 import java.io.IOException;
 
 import type.BoatGame;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day06 {
     private static String fileInfo[];
@@ -15,7 +15,7 @@ public class Day06 {
     public static void update() throws IOException {
         String fNum = "06";  int cheat = 4; //Part1- 131376   Part2- ???  4134594 Lo
         // String fNum = "061";  int cheat = 3; //Part1- 288 (4 * 8 * 9)   Part2- 71503
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         BoatGame boatInfo = new BoatGame(fileInfo, cheat);
 

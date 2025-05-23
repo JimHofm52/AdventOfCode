@@ -6,13 +6,13 @@ Date Created: 12/1/2022
 
 import java.io.*;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 import days22.*;
 
 public class AoC2022 {
     public static void main(String[] arg) throws IOException{
         final long startTm = System.currentTimeMillis();
-        ReadInput.year = "AoC2022";
+        ReadWriteFiles.year = "AoC2022";
 
         Day01.update();  //<===== Change to match day   //0.136 s.
         // Day01A.update();  //<===== Change to match day, simplier version    //0.126 s.

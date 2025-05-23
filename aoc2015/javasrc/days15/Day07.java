@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import type.Wire;
 import type.WireInstr;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day07 {
     private static String fileInfo[];
@@ -33,7 +33,7 @@ public class Day07 {
 
     public static void update() throws IOException {
         String fNum = "07";//Part1- 3176   Part2- 14710
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
         question1();    //Confirmed: 07- 3176  hi-64223  071- 'i' => 65079

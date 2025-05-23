@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import type.T_Calorie;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day01 {
     private static int fileInfo[];
@@ -16,7 +16,7 @@ public class Day01 {
     public static void update() throws IOException {
         String fNum = "01";
         // String fNum = "011";    //Test input - rtn 24000 calories by 4th elf
-        fileInfo = ReadInput.getInputInt(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputInt(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         elfStuff = parceInput(fileInfo);
         int a = 0;

@@ -2,7 +2,7 @@ package days20;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day4 {
 
@@ -14,7 +14,7 @@ public class Day4 {
     private Day4(){}
 
     public static void update() throws IOException {
-        fileInfo = ReadInput.getInputStrSpS(4); //Get input in an array for Day4
+        fileInfo = ReadWriteFiles.getInputStrSpS(4); //Get input in an array for Day4
         len = fileInfo.length;                  //as record per line.  Total pswds.
         System.out.println();
         question1();                            //Puzzle answer was 208.

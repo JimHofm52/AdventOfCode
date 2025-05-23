@@ -3,7 +3,7 @@ package days19;
 import java.io.IOException;
 
 import type.Amp;
-import util.ReadInput;
+import util.ReadWriteFiles;
 import util.IntCode;
 
 public class Day07{
@@ -18,7 +18,7 @@ public class Day07{
     public Day07(){}
 
     public static void update() throws IOException {
-        fileInfo = ReadInput.getInputIntCS("073");   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputIntCS("073");   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         for(int i = 0; i < 5; i++){
             amp[i] = new Amp(fileInfo, phs[i], 0);

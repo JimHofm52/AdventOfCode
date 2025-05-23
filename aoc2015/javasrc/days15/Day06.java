@@ -3,7 +3,7 @@ package days15;
 import java.io.IOException;
 
 import type.LiteInstr;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day06 {
     private static String[] fileInfo;
@@ -15,7 +15,7 @@ public class Day06 {
 
     public static void update() throws IOException {
         String fNum = "06";//Part1- 377891   Part2- 14110788
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         liteInstr = new LiteInstr[len];
         for(int i = 0; i < len; i++){

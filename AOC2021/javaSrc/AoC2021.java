@@ -8,11 +8,11 @@ Date Created: 12/1/2021
 import java.io.*;
 
 import days20.Day11;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class AoC2021 {
     public static void main(String[] arg) throws IOException{
-        ReadInput.year = "AoC2021";
+        ReadWriteFiles.year = "AoC2021";
 
         // Day01.update();  //<===== Change to match day
         // Day02.update();  //<===== Change to match day

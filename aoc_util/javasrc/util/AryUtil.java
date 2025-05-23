@@ -82,6 +82,21 @@ public class AryUtil {
     }
 
     /**
+     * Copy values from a 2d array and return a new 2d array (not reference).
+     * @param from 2d array to copy from.
+     * @return a new 2d array with copied values.
+     */
+    public static char[][] copyChar2By(char[][] from){
+        char [][] myAry = new char[from.length][from[0].length];
+        for(int i = 0; i < from.length; i++){
+            for(int j = 0; j < from[0].length; j++){
+                myAry[i][j] = from[i][j];
+            }
+        }
+        return myAry;
+    }
+
+    /**
      * Returns a copy of an array.
      * Not sure why I wrote this?  Use newAry = Arrays.copyOf(ary).
      * @param from

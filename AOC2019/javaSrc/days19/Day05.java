@@ -3,7 +3,7 @@ package days19;
 import java.io.IOException;
 
 import util.IntCode;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day05 {
     private static int[] fileInfo;  //Define array for input type data
@@ -16,7 +16,7 @@ public class Day05 {
         // String fNum = "051";        //Test-Rtn input, Q1 only
         // String fNum = "052";        //Test-Rtn 999 if < 8, 1000 if = 8, & 1001 > 8, Q2 only
         String fNum = "05";
-        fileInfo = ReadInput.getInputIntCS(fNum);   //Get input in an array for 2
+        fileInfo = ReadWriteFiles.getInputIntCS(fNum);   //Get input in an array for 2
         len = fileInfo.length;                      //Length of input array
         question1(1);       //Confirmed: 05-15426686   051-returns input
         question2(5);       //Confirmed: 05-11430197

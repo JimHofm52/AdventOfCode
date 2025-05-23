@@ -2,7 +2,7 @@ package days22;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day03 {
     private static String fileInfo[];
@@ -14,7 +14,7 @@ public class Day03 {
     public static void update() throws IOException {
         String fNum = "03";         //rtn 1: 7763  p2: 2569
         // String fNum = "031";     //rtn 1: 157   p2: 70
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
         int[] fndChDupVal = parceDupChar(fileInfo);

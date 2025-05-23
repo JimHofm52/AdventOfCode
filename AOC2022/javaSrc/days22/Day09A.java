@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import type.T_Knot;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day09A {
     private static String fileInfo[];
@@ -18,7 +18,7 @@ public class Day09A {
     public static void update() throws IOException {
         String fNum = "09"; //Part1- 6494   Part2- ???
         // String fNum = "091";//Part1- 13   Part2- ???
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
         question1();    //Confirmed: 09- 6494   091- 13

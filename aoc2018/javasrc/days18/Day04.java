@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import type.DTGuard;
 import type.GuardInfo;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day04 {
     private static String fileInfo[];
@@ -18,7 +18,7 @@ public class Day04 {
 
     public static void update() throws IOException {
         String fNum = "04";//Part1- 118599   Part2- 33949
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         dtGrdData = new DTGuard[len];
         for(int i = 0; i < fileInfo.length; i++) dtGrdData[i] = new DTGuard(fileInfo[i]); 

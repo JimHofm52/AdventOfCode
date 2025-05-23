@@ -2,7 +2,7 @@ package days22;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day10 {
     private static String fileInfo[];
@@ -14,7 +14,7 @@ public class Day10 {
     public static void update() throws IOException {
         String fNum = "10"; //Part1- 13760   Part2- RFKZCPEF
         // String fNum = "101";//Part1- 13140   Part2- ##.. ###... ####.... ######.....
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
         question1();    //Confirmed: 10- 13760   101- 13140

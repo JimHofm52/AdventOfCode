@@ -3,7 +3,7 @@ package days20;
 import java.io.IOException;
 
 import util.AryUtil;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day11 {
 
@@ -12,7 +12,7 @@ public class Day11 {
 
     public static void update() throws IOException {
         int fileNum = 11;   //File number to use
-        String prstSeats[] = ReadInput.getInputStr(fileNum);//Get input in an array for 11(111)
+        String prstSeats[] = ReadWriteFiles.getInputStr(fileNum);//Get input in an array for 11(111)
         int lenRow = prstSeats.length;                 //Length of input array
         int lenCol = prstSeats[0].length();
         int a = 0;
@@ -25,7 +25,7 @@ public class Day11 {
         System.out.println("\nPart 1 seat cnt after " + seatPass + " passes is - " + a);
 
         //----- Part 2 ------
-        prstSeats = ReadInput.getInputStr(fileNum);//Get input in an array for 10(101)
+        prstSeats = ReadWriteFiles.getInputStr(fileNum);//Get input in an array for 10(101)
         seatPass = 0;
         while(!ChgSeats(prstSeats, false)){
             // System.out.println();

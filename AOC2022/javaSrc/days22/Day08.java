@@ -2,7 +2,7 @@ package days22;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day08 {
     private static String fileInfo[];
@@ -16,7 +16,7 @@ public class Day08 {
     public static void update() throws IOException {
         String fNum = "08"; //Part1- 1669   Part2- 331344
         // String fNum = "081";//Part1- 21   Part2- 8
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         width = fileInfo[0].length();   //Width of input array
         tree = new int[len][width][3]; //Heigth[0] Q1-RLUD[1] ~ 8421, Q2-trees seen[2]

@@ -3,7 +3,7 @@ package days23;
 import java.io.IOException;
 
 import type.SandRpt;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day09 {
     private static String fileInfo[];
@@ -16,7 +16,7 @@ public class Day09 {
     public static void update() throws IOException {
         String fNum = "09"; //Part1- 1882395907   Part2- 1005
         // String fNum = "091";//Part1- 114   Part2- 2
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         envRpts = new SandRpt[len];
         parceInput();

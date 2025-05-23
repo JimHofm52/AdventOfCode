@@ -3,7 +3,7 @@ package days23;
 import java.io.IOException;
 
 import type.CamelCard;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day07 {
     private static String fileInfo[];
@@ -16,7 +16,7 @@ public class Day07 {
     public static void update() throws IOException {
         String fNum = "07";     //Part1- 253205868 11949 Lo 2036375 Lo Part2- 253907829  253666245 Lo 251343210 Lo
         // String fNum = "071";    //Part1- 6440   Part2- 5905
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         hand = new CamelCard[len];
         for(int h = 0; h < len; h++) hand[h] = new CamelCard(fileInfo[h]);

@@ -4,17 +4,39 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class ReadInput {
+public class ReadWriteFiles {
     
-    public static String year;
+    public static String year;  //"AoC20xx"
 
     /**
      * Constructor to setup for a year.  Ex. AoC2020.
      * @param inYear
      */
-    private ReadInput(){
+    private ReadWriteFiles(){
     }
     
+    /**
+     * Write a string array to a file DayxxOutput.txt
+     * 
+     * @param dayNum Day working with
+     * @param strIn String array to save
+     * @throws IOException
+     */
+    public static void writeOutputStr(String dayNum, String[] strIn)  throws IOException{
+
+        String fPath;
+        fPath = getFilePath(dayNum, true);
+        System.out.println(fPath);
+        // String fPath = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCode\\aoc2024\\javasrc\\textIn\\Day06Output.txt";
+        // File file = new File(fPath);
+        FileWriter fw = new FileWriter(fPath);
+        PrintWriter fileOut = new PrintWriter(fw);
+        for(String str: strIn){
+            fileOut.println(str);
+        }
+        fileOut.close();
+    }
+
     /**
      * Read in strings from a text file and return an array of strings.
      * @param dayNumday number of the input file to evaluate
@@ -66,7 +88,6 @@ public class ReadInput {
                 fileIn[maxIndx] = -1;
             }else{
                 fileIn[maxIndx] = Integer.parseInt(str.trim());
-                int a = 0;
             }
         }
         sf.close();             //Close file
@@ -182,13 +203,23 @@ public class ReadInput {
      * @param dayNum day number of the input file to open
      * @return string with full path/filename
      */
-    private static String getFilePath(String dayNum){
+    private static String getFilePath(String dayNum, boolean output){
         // String fDir = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCode\\" +
         //                year + "\\javaSrc\\textIn";
-        String fDir = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCodeInput\\" +
-                       year;
-        String fName = "Day" + dayNum + "Input.txt";
-        return fDir + "\\" + fName;
+        String fDir = "C:\\\\Users\\\\Hofmjc\\\\Documents\\\\_Prog\\\\AdventOfCode\\\\" +
+                       year + "\\\\javasrc\\\\textIn";
+        String fName = "Day" + dayNum + (output ? "Output.txt" : "Input.txt");
+        return fDir + "\\\\" + fName;
+    }
+
+    /**
+     * Assemble full path/filename using the day number.
+     * Probably need to pull the common directory from the system.
+     * @param dayNum day number of the input file to open
+     * @return string with full path/filename
+     */
+    private static String getFilePath(String dayNum){
+        return getFilePath(dayNum, false);
     }
 
     /** dayNum is int and adds leading 0 for LT 9, converts to string. */ 

@@ -3,7 +3,7 @@ package days19;
 import java.io.IOException;
 
 import type.Orbit;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day06 {
     private static String fileInfo[];
@@ -14,7 +14,7 @@ public class Day06 {
     }
 
     public static void update() throws IOException {
-        fileInfo = ReadInput.getInputStr("06"); // Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr("06"); // Get input in an array for 1
         len = fileInfo.length; // Length of input array
         Orbit[] orbs = parceInput(fileInfo);
         question1(orbs);

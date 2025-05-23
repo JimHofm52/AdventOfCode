@@ -3,7 +3,7 @@ package days23;
 import java.io.IOException;
 
 import type.Card;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day04 {
     private static String fileInfo[];
@@ -15,7 +15,7 @@ public class Day04 {
     public static void update() throws IOException {
         String fNum = "04"; //Part1- 26443   Part2- 6284877
         // String fNum = "041";//Part1- 13   Part2- 30
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         Card[] card = new Card[fileInfo.length];
         for(int i = 0; i < fileInfo.length; i++) card[i] = new Card(fileInfo[i]);

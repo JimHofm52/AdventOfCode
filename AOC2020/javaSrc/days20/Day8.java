@@ -2,7 +2,7 @@ package days20;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day8 {
 
@@ -11,7 +11,7 @@ public class Day8 {
 
     public static void update() throws IOException {
         String fileInfo[];
-        fileInfo = ReadInput.getInputStr(8);//Get input in an array for 8
+        fileInfo = ReadWriteFiles.getInputStr(8);//Get input in an array for 8
         int len = fileInfo.length;          //Length of input array
 
         int opsAcc[][] = new int[2][len];   //Opcode[0][] / Acc[1][]

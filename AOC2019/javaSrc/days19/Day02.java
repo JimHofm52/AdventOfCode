@@ -1,7 +1,7 @@
 package days19;
 
 import java.io.IOException;
-import util.ReadInput;
+import util.ReadWriteFiles;
 import util.IntCode;
 
 public class Day02 {
@@ -18,7 +18,7 @@ public class Day02 {
      * @throws IOException - ???
      */
     public static void update() throws IOException {
-        fileInfo = ReadInput.getInputIntCS("02");   //Get input in an array for 2
+        fileInfo = ReadWriteFiles.getInputIntCS("02");   //Get input in an array for 2
         len = fileInfo.length;                      //Length of input array
         question1();    //Track 520625 too low,  Confirmed 3760627
         question2();    //Track ,  Confirmed 7195

@@ -3,7 +3,7 @@ package days23;
 import java.io.IOException;
 
 import type.StrNum;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day01 {
     private static String[] fileInfo;
@@ -15,7 +15,7 @@ public class Day01 {
         String fNum = "01";     //01-55130  02-54985
         // String fNum = "011";    //011-142   012-XX
         // String fNum = "012";    //011-xx    012-281
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         question1();
         question2();

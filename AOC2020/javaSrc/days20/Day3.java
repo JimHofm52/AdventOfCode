@@ -2,7 +2,7 @@ package days20;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day3 {
 
@@ -13,7 +13,7 @@ public class Day3 {
     private Day3(){}
 
     public static void update() throws IOException {
-        fileInfo = ReadInput.getInputStr(3);    //Get input in an array for Day3
+        fileInfo = ReadWriteFiles.getInputStr(3);    //Get input in an array for Day3
         len = fileInfo.length;
         System.out.println();
         question1();                            //Puzzle answer was 252.

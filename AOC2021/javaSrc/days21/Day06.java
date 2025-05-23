@@ -2,7 +2,7 @@ package days21;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day06 {
     private static int[] fileInfo;
@@ -14,7 +14,7 @@ public class Day06 {
 
     public static void update() throws IOException {
         String fNum = "06";
-        fileInfo = ReadInput.getInputIntCS(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputIntCS(fNum);   //Get input in an array for 1
         fiLen = fileInfo.length;                      //Length of input array
 
         fishDay = fileInfo.clone();

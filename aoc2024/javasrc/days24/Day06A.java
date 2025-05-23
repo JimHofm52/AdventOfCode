@@ -3,29 +3,31 @@ package days24;
 import java.io.IOException;
 import java.util.Arrays;
 
+import util.AryUtil;
 import util.ReadWriteFiles;
 
 /**
- * Used String map
+ * Create a char[row][col] map of the input
  */
-public class Day06 {
-    private static String[] fileInfo;
+public class Day06A {
+    private static String fileInfo[];
     private static int len;
 
     /** Constructor, not needed but used for standards. 
-     * <p>Started Dec 6, 2024,  Finished on May 22, 2025.
-     * <p>Took too many hour.  Runtime 19.533 S.
+     * <p>Started Dec 6, 2024,  Finished on May 22, 2025..
+     * <p>Took Too many hour.  Runtime 18.645 S.
     */
-    private Day06(){}
+    private Day06A(){}
 
     public static void update() throws IOException {
         String fNum = "06";//Part1- 4602   Part2- 1703
-        fileInfo = ReadWriteFiles.getInputStr(fNum); //Get input in an array for 1
-        len = fileInfo.length;                  //Length of input array
-        int[][] grdSteps = getGrdSteps(fileInfo);   //grd starts @ 79,87
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
+        len = fileInfo.length;          //Length of input array
+        char[][] map = makeMap();       //[0]=row, [1]=col
+        int[][] grdSteps = getGrdSteps(map);        //grd starts @ 79,87
 
         question1(grdSteps);        //Confirmed: 06- 4602   061- 41
-        question2(grdSteps);   //Confirmed: 06- 1703  hi-1704  061- 6
+        question2(map, grdSteps);   //Confirmed: 06- 1703  hi-1704  061- 6
     }
 
     /**
@@ -34,29 +36,26 @@ public class Day06 {
      */
     private static void question1(int[][] grdSteps) {
         //Track ,  Confirmed: 06- 4602   061- 41
-        System.out.println("\nPart 1: Total unique steps of path of guard: " + grdSteps.length);
+        System.out.println("\nPart 1: Total path of guard: " + grdSteps.length);
     }
     
     /**
      * Question 2: You need to get the guard stuck in a loop by adding 
      * a single new obstruction. How many different positions could you 
      * choose for this obstruction?
-     * @throws IOException 
      */
-    private static void question2(int[][] grdSteps) throws IOException {
-        String[] map1 = Arrays.copyOf(fileInfo, len);
+    private static void question2(char[][] map, int[][] grdSteps) {
+        char[][] map1;
         int totLoops = 0;
         int[][] loopChk;
         int[][] stepNow = new int[0][2];
         int[] grdNow = new int[2];
-        char tmpCh;
 
-        for(int i = 0; i < grdSteps.length; i++){           //For each step of the original path
-            map1 = Arrays.copyOf(fileInfo, len);            //Start with a clean map
-            tmpCh = map1[grdSteps[i][0]].charAt(grdSteps[i][1]);
-            if(tmpCh != '^'){   //If not crossing the starting point
-                //Set new block, same as '#'
-                map1[grdSteps[i][0]] = replCharAt(map1[grdSteps[i][0]], 'o', grdSteps[i][1]);
+        for(int i = 2; i < grdSteps.length; i++){           //For each step of the original path
+            map1 = AryUtil.copyChar2By(map);                //Start with a clean map
+            if(map1[grdSteps[i][0]][grdSteps[i][1]] != '^'){//If not crossing the starting point
+            // if(grdSteps[i][0] != 79 || grdSteps[i][1] != 87){//If not crossing the starting point
+                map1[grdSteps[i][0]][grdSteps[i][1]] ='o';  //Set new block, same as '#'
                 grdNow[0] = grdSteps[i][0];
                 grdNow[1] = grdSteps[i][1];
                 loopChk = walkTheGuard2(map1);              //Walk the guard
@@ -66,9 +65,14 @@ public class Day06 {
                 }
             }
         }
+        int a = 0;
         stepNow = delDups(stepNow);
-        // ReadWriteFiles.writeOutputStr("06", map1);  //Test, file map for eval.
 
+        for(int r = 0; r < stepNow.length; r++){
+            if(stepNow[r][0] == 79 && stepNow[r][1] == 87){
+                int b = 0;
+            }
+        }
         //Track ,  Confirmed: 06- 1703  hi-1704  061- 6
         System.out.println("\nPart 2: Total number of circular Blocked paths of guard: " + totLoops);
     }
@@ -76,18 +80,37 @@ public class Day06 {
     //========================  Working Files  ==========================
 
     /**
+     * Use fileInfo[] as input to make a map of the room.  
+     * <p>'^' is the starting point for the gaurd and '#' indicates a fixed item.
+     *  
+     * @return a char[][] of map, using row & column as coordinates.
+     */
+    private static char[][] makeMap(){
+        char[][] tmpMap = new char[len][fileInfo[0].length()];
+        for(int row = 0; row< len; row++){
+            for(int col = 0; col < fileInfo[0].length(); col++){
+                tmpMap[row][col] = fileInfo[row].charAt(col);
+            }
+        }
+        return tmpMap;
+    }
+
+    /**
      * Find the '^', guard's original location.
-     * 
      * @param map of the room
      * @return [row,col] of guards starting location
      */
-    private static int[] findGuard(String[] map){
+    private static int[] findGuard(char[][] map){
         int[] loc = new int[2];
-        for(loc[0] = 0; loc[0]< len; loc[0]++){
-            loc[1] = map[loc[0]].indexOf("^");
-            if(loc[1] != -1) return loc;
+        for(int row = 0; row< len; row++){
+            for(int col = 0; col < fileInfo[0].length(); col++){
+                if(map[row][col] == '^'){
+                    loc[0] = row;
+                    loc[1] = col;
+                    return loc;
+                }
+            }
         }
-        loc[0] = -1;    //Not found
         return loc;
     }
 
@@ -97,8 +120,9 @@ public class Day06 {
      * @param map of the room with starting position and blocks
      * @return an array of all locations the guard visits
      */
-    private static int[][] getGrdSteps(String[] map){
-        String[] mapCopy = Arrays.copyOf(map, map.length);
+    private static int[][] getGrdSteps(char[][] map){
+        char[][] mapCopy = AryUtil.copyChar2By(map);    
+        // char[][] mapCopy = Arrays.copyOf(map, map.length);   //Copies as ref(?).
         int[][] grdSteps = new int[0][2];
         grdSteps = addStep(grdSteps, findGuard(mapCopy));
         grdSteps = walkTheGuard2(mapCopy);
@@ -106,7 +130,6 @@ public class Day06 {
         return grdSteps;
     }
     
-
     /**
      * Delete any duplicate row/col locations of where the guard has been.
      * 
@@ -136,24 +159,24 @@ public class Day06 {
         return saveAry;
     }
 
-    //--------------------  Part 1  --------------------
+    //--------------------  Part 1 & 2  --------------------
     /**
      * Walk the guard and track the path they take.  Until it is out or starts repeating.
      * 
-     * @param mapIn map of the room with blocks (part2 with additional blocks)
-     * @return array of locations guard has been to, RC. If idx[0][0] == -1 path is repeating
+     * @param mapIn
+     * @return
      */
-    private static int[][] walkTheGuard2(String[] mapIn){
-        int[] grdLoc = findGuard(mapIn);  //Guard present loc, [0]=row  [1]=col
-        int grdDir = 0;                 //Direction guard is facing, 0 = Up, 1 =  right, 2 = down, 3 = left
+    private static int[][] walkTheGuard2(char[][] mapIn){
+        int[] grdLoc = findGuard(mapIn);    //Guard present loc, [0]=row  [1]=col
+        int grdDir = 0;                     //Direction guard is facing, 0 = Up, 1 =  right, 2 = down, 3 = left
         int[] nxtLoc = addDirMoveToGrdLoc(grdLoc, grdDir);  //Next Location guard is to goto
-        char nxtCh;
+        char nxtCh;                         //Char at the next loc
         int[][] grdPath = new int[0][2];    // Array to track where the guard has been.
         grdPath = addStep(grdPath, grdLoc);
         int rptCnt = 0;
 
         do{
-            nxtCh = mapIn[nxtLoc[0]].charAt(nxtLoc[1]);  //Get the char for the next loc
+            nxtCh = mapIn[nxtLoc[0]][nxtLoc[1]];  //Get the char for the next loc
             switch(nxtCh){
                 case '#':   //Blocked turn right 90
                 case 'o':   //same Added Block (part 2)
@@ -161,23 +184,24 @@ public class Day06 {
                 break;
                 case '.':       //Open position, set to x
                 case '^':       //Crossing start position, set to x
-                mapIn[nxtLoc[0]]  = replCharAt(mapIn[nxtLoc[0]], 'x', nxtLoc[1]);
+                rptCnt = 0;
+                mapIn[nxtLoc[0]][nxtLoc[1]] = 'x';
                 grdPath = addStep(grdPath, nxtLoc);
                 grdLoc = nxtLoc;
-                rptCnt = 0;
                 break;
-                case 'x':       //Been here once.  x=>y
-                case 'y':       //Been here twice. y=>z  Might be a crossover.
-                mapIn[nxtLoc[0]]  = replCharAt(mapIn[nxtLoc[0]], ++nxtCh, nxtLoc[1]);
+                case 'x':       //Been here once
+                case 'y':       //Been here twice.  Might be a crossover.
+                mapIn[nxtLoc[0]][nxtLoc[1]]++;      //x=>y, y=>z
                 grdPath = addStep(grdPath, nxtLoc); //Add this RC to path walked
-                grdLoc = nxtLoc;    //Set guard loc to next
+                grdLoc[0] = nxtLoc[0];    //Set guard loc to next, row
+                grdLoc[1] = nxtLoc[1];    //Set guard loc to next, col
                 rptCnt = 0;         //Not repeating yet
                 break;
                 case 'z':           //Been here 3 time, no longer a xover.
-                grdLoc = nxtLoc;    //Set guard loc to next
                 rptCnt++;           //Count z's
+                grdLoc = nxtLoc;    //Set guard loc to next
                 if(rptCnt > 5){     //5 in a row, definitely not a xover.
-                    mapIn[nxtLoc[0]]  = replCharAt(mapIn[nxtLoc[0]], 'E', nxtLoc[1]);   //The End of a repeat
+                    mapIn[nxtLoc[0]][nxtLoc[1]] = 'E';  //The End of a repeat
                     grdPath[0][0] = -1; //Flag done with repeating
                     return grdPath;     //Return all other path loc's
                 }
@@ -185,13 +209,12 @@ public class Day06 {
                 default:
                 System.out.println("WTF, char: " + nxtCh);
             }
-            nxtLoc = addDirMoveToGrdLoc(grdLoc, grdDir); //Get the next guard loc
+            nxtLoc = addDirMoveToGrdLoc(grdLoc, grdDir);
             //Keep trying while in map boundry: 0 to length, row & column
-        }while(nxtLoc[0] > -1 && nxtLoc[0] < mapIn[0].length() &&
+        }while(nxtLoc[0] > -1 && nxtLoc[0] < mapIn[0].length &&
                nxtLoc[1] > -1 && nxtLoc[1] < mapIn.length);
-        return grdPath; //Return all path loc's w/o flag of repeating, [0][0] = -1
+        return grdPath; //Return all path loc's w/o flag of repating, [0][0] = -1
     }
-
 
     /**
      * Add the present location to the array that keeps track of where the guard has been.
@@ -213,7 +236,7 @@ public class Day06 {
     /**
      * Move the guard's location.  Add to thier loc the direction pointed.
      * 
-     * @param loc present row [0] & col[1] location
+     * @param loc present [0]=row & [1]=col location
      * @param dir values to add to move:
      * <p>0 = up, 1 = right, 2 = down, 3 - left
      * @return next location
@@ -232,20 +255,5 @@ public class Day06 {
             System.out.println("Bad guard direction to add - " + dir);
             return loc;
         }
-    }
-
-    /**
-     * In the string replace the char at the index
-     * @param strIn String to modify
-     * @param ch character to be used
-     * @param idx character index in string to be replaced
-     * @return modified string
-     */
-    private static String replCharAt(String strIn, char ch, int idx){
-        if(idx < 0 || idx > strIn.length()){
-            System.out.println("Replacement index out of range: " + idx + " for \"" + strIn + "\"");
-            return strIn;
-        }
-        return strIn.substring(0, idx) + ch + strIn.substring(idx + 1);
     }
 }

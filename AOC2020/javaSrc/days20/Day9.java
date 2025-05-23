@@ -2,7 +2,7 @@ package days20;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day9 {
 
@@ -10,7 +10,7 @@ public class Day9 {
     private Day9(){}
 
     public static void update() throws IOException {
-        long numList[] = ReadInput.getInputLong(9); //Get input in an array for 9(91)
+        long numList[] = ReadWriteFiles.getInputLong(9); //Get input in an array for 9(91)
         int len = numList.length;                   //Length of input array
 
         //------------------------------ part 1 -----------------------------------

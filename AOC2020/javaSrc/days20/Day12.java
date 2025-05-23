@@ -2,7 +2,7 @@ package days20;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day12 {
 
@@ -11,7 +11,7 @@ public class Day12 {
 
     public static void update() throws IOException {
         int fileNum = 12;       //File number of input
-        String dirIn[] = ReadInput.getInputStr(fileNum);// Get input in an array for 12(121)
+        String dirIn[] = ReadWriteFiles.getInputStr(fileNum);// Get input in an array for 12(121)
         int len = dirIn.length; // Length of input array
         // ---- Part 1 ------
         char hdg = 'E'; // Start heading is East
@@ -21,7 +21,7 @@ public class Day12 {
         System.out.println("\nPart 1 Manhattan adr - " + a); // Confirmed - Part 1 Manhattan adr - 319(25)
 
         // ----- Part 2 ------
-        dirIn = ReadInput.getInputStr(fileNum); // Get input in an array for 12(121)
+        dirIn = ReadWriteFiles.getInputStr(fileNum); // Get input in an array for 12(121)
         hdg = 'E'; // Start heading is East
         coorNE = new int[][] { { 0, 0 }, { 1, 10 } }; // [0=ship,1=waypt][0=N,1=E]
         hdg = EvalIn(dirIn, hdg, coorNE, false);

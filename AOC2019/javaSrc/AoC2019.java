@@ -8,12 +8,12 @@ Date Created: 11/24/2021
 import java.io.*;
 
 import days19.*;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class AoC2019 {
     public static void main(String[] arg) throws IOException{
         final long startTm = System.currentTimeMillis();
-        ReadInput.year = "AoC2019";
+        ReadWriteFiles.year = "AoC2019";
 
         // Day01.update();  //<===== Change to match day   //0.132 s.
         // Day02.update();  //<===== Change to match day   //0.251 s.

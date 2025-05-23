@@ -3,7 +3,7 @@ package days22;
 import java.io.IOException;
 
 import type.T_Areas;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day04 {
     private static String fileInfo[];
@@ -15,7 +15,7 @@ public class Day04 {
     public static void update() throws IOException {
         String fNum = "04";     //Part1-644   Part2-926
         // String fNum = "041";    //Part1-2     Part2-4
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 4
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 4
         len = fileInfo.length;          //Length of input array
         T_Areas[] elfGrp = new T_Areas[len];
         for(int i = 0; i < len; i++) elfGrp[i] = new T_Areas(fileInfo[i]);

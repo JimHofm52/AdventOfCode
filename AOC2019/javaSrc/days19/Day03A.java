@@ -3,7 +3,7 @@ package days19;
 import java.io.IOException;
 
 import util.AryUtil;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 /**
  * Help the elves find the short between 2 wires.
@@ -20,7 +20,7 @@ public class Day03A {
      * @throws IOException - ??
      */
     public static void update() throws IOException {
-        fileInfo = ReadInput.getInputStr("03");   //Get input in an array for 3
+        fileInfo = ReadWriteFiles.getInputStr("03");   //Get input in an array for 3
         len = fileInfo.length;                    //Length of input array
         int[][] wire1, wire2;               //Wires as wire?[X][Y] coor
         wire1 = parceWire2XY(fileInfo[0]);  //Wire 1 as XY coor

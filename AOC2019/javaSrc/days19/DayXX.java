@@ -1,7 +1,7 @@
 package days19;
 
 import java.io.IOException;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class DayXX {
     private static String fileInfo[];
@@ -11,7 +11,7 @@ public class DayXX {
     public DayXX(){}
 
     public static void update() throws IOException {
-        fileInfo = ReadInput.getInputStr(1);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(1);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
     }

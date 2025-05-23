@@ -4,21 +4,22 @@ Programmer: Jim Hofmann
 Date Created: 12/1/2023
 */
 import java.io.*;
-import util.ReadInput;
+import util.ReadWriteFiles;
 import days24.*;
 
 
 public class AoC2024 {
     public static void main(String[] arg) throws IOException{
         final long startTm = System.currentTimeMillis();
-        ReadInput.year = "AoC2024";
+        ReadWriteFiles.year = "AoC2024";
 
         // Day01.update();  //<===== Change to match day   //0.208 s.
         // Day02.update();  //<===== Change to match day   //0.207 s.
         // Day03.update();  //<===== Change to match day   //0.161 s.
         // Day04.update();  //<===== Change to match day   //0.226 s.
-        Day05.update();  //<===== Change to match day   //221 s.
-        // Day06.update();  //<===== Change to match day   //0.136 s.
+        // Day05.update();  //<===== Change to match day   //221 s.
+        Day06.update();  //<===== Change to match day   //19.533 s.
+        // Day06A.update();  //<===== Change to match day   //18.375 s.
         // Day07.update();  //<===== Change to match day   //0.291 s.
         // Day08.update();  //<===== Change to match day   //7.549 s.
         // Day09.update();  //<===== Change to match day   //0.157 s.

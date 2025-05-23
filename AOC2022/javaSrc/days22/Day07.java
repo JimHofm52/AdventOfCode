@@ -8,7 +8,7 @@ import java.util.jar.Attributes.Name;
 
 import type.T_Disk;
 import type.T_Folder;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day07 {
     private static String fileInfo[];
@@ -21,7 +21,7 @@ public class Day07 {
     public static void update() throws IOException {
         String fNum = "07"; //Part1- 1232307   Part2- 7268994
         // String fNum = "071";//Part1- 95437   Part2- 24933642
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         myDisk = new T_Disk();
         parceInput(fileInfo);

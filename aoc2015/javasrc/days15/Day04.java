@@ -3,7 +3,7 @@ package days15;
 import java.io.IOException;
 
 import type.MD5Hash;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day04 {
     private static String fileInfo[];
@@ -15,7 +15,7 @@ public class Day04 {
     public static void update() throws IOException {
         /**All in same file.  [0]-04 Q1 & 2, [3]=041a, [8]=041b */
         String fNum = "04"; //Part1- 254575   Part2- 1038736
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
 
         question1();    //Confirmed: 04- 254575   041a- 609043  041b- 1048970

@@ -3,7 +3,7 @@ package days20;
 import java.io.IOException;
 
 import util.AryUtil;
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day16{
 
@@ -12,7 +12,7 @@ public class Day16{
 
     public static void update() throws IOException {
         int fileNum = 16;                   //File number of input
-        String dataIn[] = ReadInput.getInputStr(fileNum);// Get input in an array
+        String dataIn[] = ReadWriteFiles.getInputStr(fileNum);// Get input in an array
         int len = dataIn.length;
 
         int[][] rules = Parce_rules(dataIn);    //[][0]-Lo1 [][1]-Hi1 [][2]-Lo2 [][3]-Hi2
@@ -61,7 +61,7 @@ public class Day16{
     private static int[] Parce_myTkt(String[] dataIn){
         int mtNdx = 0;
         while(dataIn[mtNdx++].indexOf("your ticket") < 0);   //Find start of nearby
-        return ReadInput.parceStrIntCS(dataIn[mtNdx]);
+        return ReadWriteFiles.parceStrIntCS(dataIn[mtNdx]);
     }
 
     private static int[][] Parce_nbTkt(String[] dataIn, int numRules){
@@ -71,7 +71,7 @@ public class Day16{
 
         //Parce nb ticket values
         for(int i = nbNdx; i < dataIn.length; i++){     //Parce nb value
-            nbTkt[i - nbNdx] = ReadInput.parceStrIntCS(dataIn[i]);
+            nbTkt[i - nbNdx] = ReadWriteFiles.parceStrIntCS(dataIn[i]);
         }
         return nbTkt;
     }

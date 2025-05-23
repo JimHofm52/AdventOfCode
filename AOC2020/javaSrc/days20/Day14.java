@@ -2,7 +2,7 @@ package days20;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day14 {
 
@@ -11,7 +11,7 @@ public class Day14 {
 
     public static void update() throws IOException {
         int fileNum = 14;                   //File number of input
-        String readIn[] = ReadInput.getInputStr(fileNum);// Get input in an array for 14(141)
+        String readIn[] = ReadWriteFiles.getInputStr(fileNum);// Get input in an array for 14(141)
         int len = readIn.length;            //number of masks + adrs
         long inData[][] = new long[len][3]; //Mask/Mem, [0]=0's/mem, [1]=1's/val, [2]=X's/isAdr=-1
         ParceIn(readIn, inData);            //Convert string in to coded numeric data

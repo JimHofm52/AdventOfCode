@@ -2,7 +2,7 @@ package days20;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 
 public class Day7 {
 
@@ -11,7 +11,7 @@ public class Day7 {
 
     public static void update() throws IOException {
         String fileInfo[];
-        fileInfo = ReadInput.getInputStr(7);   //Get input in an array for 7
+        fileInfo = ReadWriteFiles.getInputStr(7);   //Get input in an array for 7
         int len = fileInfo.length;          //Length of input array
 
         String rules[][] = new String[2][len];  //All Outside Colors[0] & the rest[1], easy searches

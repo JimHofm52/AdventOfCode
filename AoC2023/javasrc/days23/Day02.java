@@ -2,7 +2,7 @@ package days23;
 
 import java.io.IOException;
 
-import util.ReadInput;
+import util.ReadWriteFiles;
 import type.RBGGame;
 
 public class Day02 {
@@ -15,7 +15,7 @@ public class Day02 {
     public static void update() throws IOException {
         String fNum = "02";    //Part1- 2528   Part2- 67363
         // String fNum = "021";   //Part1- 8   Part2- 2286
-        fileInfo = ReadInput.getInputStr(fNum);   //Get input in an array for 1
+        fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         RBGGame[] rbg = new RBGGame[len];
         for(int i = 0; i < len; i++) rbg[i] = new RBGGame();    //Initalize

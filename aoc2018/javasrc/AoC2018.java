@@ -4,14 +4,14 @@ Programmer: Jim Hofmann
 Date Created: 12/1/2023
 */
 import java.io.*;
-import util.ReadInput;
+import util.ReadWriteFiles;
 import days18.*;
 
 
 public class AoC2018 {
     public static void main(String[] arg) throws IOException{
         final long startTm = System.currentTimeMillis();
-        ReadInput.year = "aoc2018";
+        ReadWriteFiles.year = "aoc2018";
 
         // Day01.update();  //<===== Change to match day   //13.779 s.
         // Day02.update();  //<===== Change to match day   //0.164 s.
