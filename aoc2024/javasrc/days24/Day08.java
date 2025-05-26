@@ -3,7 +3,7 @@ package days24;
 import java.io.IOException;
 import java.util.Arrays;
 
-import type.Node;
+import type.Node24;
 import util.ReadWriteFiles;
 
 public class Day08 {
@@ -22,7 +22,7 @@ public class Day08 {
         len = fileInfo.length;          //Length of input array
 
 
-        Node[] antNode = findAntenna();
+        Node24[] antNode = findAntenna();
 
         question1(antNode);    //Confirmed: 08- 409 hi-420  081- 14
         question2(antNode);    //Confirmed: 08- 1308   081- 34
@@ -32,8 +32,8 @@ public class Day08 {
      * Question 1: Calculate the impact of the signal. 
      * How many unique locations within the bounds of the map contain an antinode?
      */
-    private static void question1(Node[] antNode) {
-        Node[] antiNode = findAntiNodes1(antNode);
+    private static void question1(Node24[] antNode) {
+        Node24[] antiNode = findAntiNodes1(antNode);
         //Track ,  Confirmed: 08- 409  hi-420  081- 14
         System.out.println("\nPart 1: Unique antiNode  locations: " + antiNode.length);
     }
@@ -42,8 +42,8 @@ public class Day08 {
      * Question 2: Calculate the impact of the signal using this updated model. 
      * How many unique locations within the bounds of the map contain an antinode?
      */
-    private static void question2(Node[] antNode) {
-        Node[] antiNode = findAntiNodes2(antNode);
+    private static void question2(Node24[] antNode) {
+        Node24[] antiNode = findAntiNodes2(antNode);
 
         //Map nodes for troubleshooting
         String[] aMap = mapANode(antiNode, len, fileInfo[0].length());
@@ -58,13 +58,13 @@ public class Day08 {
      * Find ahtenna as nodes.  Node holds row, col and id(char).
      * @return An array of Antenna nodes.
      */
-    private static Node[] findAntenna(){
-        Node[] myNode = new Node[0];
+    private static Node24[] findAntenna(){
+        Node24[] myNode = new Node24[0];
         for(int r = 0; r < fileInfo.length; r++){
             for(int c = 0; c < fileInfo[0].length(); c++){
                 if(fileInfo[r].charAt(c) != '.'){
                     myNode = Arrays.copyOf(myNode, myNode.length + 1);
-                    myNode[myNode.length - 1] = new Node(r, c, fileInfo[r].charAt(c));
+                    myNode[myNode.length - 1] = new Node24(r, c, fileInfo[r].charAt(c));
                 }
             }
         }
@@ -77,8 +77,8 @@ public class Day08 {
      * @param antN array of anti nodes.
      * @return
      */
-    private static Node[] findAntiNodes1(Node[] antN){
-        Node[] tmpNode = new Node[0];
+    private static Node24[] findAntiNodes1(Node24[] antN){
+        Node24[] tmpNode = new Node24[0];
         int rLmt = fileInfo.length;
         int cLmt = fileInfo[0].length();
         int dRow, dCol, nRow, nCol;
@@ -110,8 +110,8 @@ public class Day08 {
      * @param antN array of anti nodes.
      * @return
      */
-    private static Node[] findAntiNodes2(Node[] antN){
-        Node[] tmpNode = new Node[0];
+    private static Node24[] findAntiNodes2(Node24[] antN){
+        Node24[] tmpNode = new Node24[0];
         int rLmt = fileInfo.length;
         int cLmt = fileInfo[0].length();
         int dRow, dCol, nRow, nCol;
@@ -153,10 +153,10 @@ public class Day08 {
      * @param id
      * @return new array if it doesn't exist else passed array.
      */
-    private static Node[] addNode(Node[] tmpNode, int nRow, int nCol, char id){
+    private static Node24[] addNode(Node24[] tmpNode, int nRow, int nCol, char id){
         if(chkDup(tmpNode, nRow, nCol)) return tmpNode;
         tmpNode = Arrays.copyOf(tmpNode, tmpNode.length + 1);
-        tmpNode[tmpNode.length - 1] = new Node(nRow, nCol, id);
+        tmpNode[tmpNode.length - 1] = new Node24(nRow, nCol, id);
         return tmpNode;
     }
 
@@ -167,8 +167,8 @@ public class Day08 {
      * @param c col index
      * @return true if R/C already exists in chkNode 
      */
-    private static boolean chkDup(Node[] chkNode, int r, int c){
-        for(Node n : chkNode){
+    private static boolean chkDup(Node24[] chkNode, int r, int c){
+        for(Node24 n : chkNode){
             if(n.r() == r && n.c() == c) return true;
         }
         return false;
@@ -181,11 +181,11 @@ public class Day08 {
      * @param col
      * @return
      */
-    private static String[] mapANode(Node[] aNode, int rows, int col){
+    private static String[] mapANode(Node24[] aNode, int rows, int col){
         String[] mapNode = new String[rows];
         for(int i = 0; i < rows; i++) mapNode[i] = ".".repeat(col);
 
-        for(Node n : aNode){
+        for(Node24 n : aNode){
             mapNode[n.r()] = mapNode[n.r()].substring(0, n.c()) + "#"
                            + mapNode[n.r()].substring(n.c() + 1);
         }
@@ -200,10 +200,10 @@ public class Day08 {
      * @param col
      * @return
      */
-    private static String[] addNode(String[] mapIn, Node[] aNode, int rows, int col){
+    private static String[] addNode(String[] mapIn, Node24[] aNode, int rows, int col){
         String[] mapNode = Arrays.copyOf(mapIn, rows);
 
-        for(Node n : aNode){
+        for(Node24 n : aNode){
             mapNode[n.r()] = mapNode[n.r()].substring(0, n.c()) + n.id()
                            + mapNode[n.r()].substring(n.c() + 1);
         }

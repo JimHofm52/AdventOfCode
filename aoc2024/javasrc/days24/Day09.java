@@ -9,7 +9,7 @@ public class Day09 {
     private static int len;
 
     /** Constructor, not needed but used for standards. 
-     * <p>Started Dec 9, 2024,  Finished on Dec 9, 2024.
+     * <p>Started May 26, 2025,  Finished on May 26, 2025.
      * <p>Took ~xx hour.  Runtime 0.yyy S.
     */
     private Day09(){}

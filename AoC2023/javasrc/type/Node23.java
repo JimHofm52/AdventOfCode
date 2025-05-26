@@ -1,6 +1,6 @@
 package type;
 
-public class Node {
+public class Node23 {
     public String str;
     public String nodeID;
     /**Left=[0], Right[1] */
@@ -8,7 +8,7 @@ public class Node {
     /**Left=[0], Right[1] */
     public int[] dirIdx = new int[2];   //index set outside
 
-    public Node(String strIn){
+    public Node23(String strIn){
         str = strIn;
         nodeID = str.substring(0, 3);
         dirID[0] = str.substring(7, 10);    //Left

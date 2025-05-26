@@ -2,14 +2,14 @@ package days23;
 
 import java.io.IOException;
 
-import type.Node;
+import type.Node23;
 import util.ReadWriteFiles;
 
 public class Day08 {
     private static String fileInfo[];
     private static int len;
     private static int[] lrSeq;        //Array of left/right seq, 0=Left 1=Right
-    private static Node[] node;
+    private static Node23[] node;
 
     /** Constructor, not needed but used for standards. */
     private Day08(){}
@@ -61,9 +61,9 @@ public class Day08 {
         }
 
         //Read each line (line 3 on) as a node.  Save nodeID, leftId & rightID (Strings)
-        node = new Node[len - 2];       //Create an array of Nodes
+        node = new Node23[len - 2];       //Create an array of Nodes
         for(int i = 2; i < len; i++){   //For each node (line) in fileInfo
-            node[i - 2] = new Node(fileInfo[i]);    //Initialze a Node
+            node[i - 2] = new Node23(fileInfo[i]);    //Initialze a Node
         }
 
         for(int i = 0; i < node.length; i++){               //For each node
@@ -140,7 +140,7 @@ public class Day08 {
      */
     private static int[] findAllIdxForxxA(){
         int cnt = 0;
-        for(Node n : node) if(n.nodeID.charAt(2) == 'A') cnt++; //Cnt 'A' nodes
+        for(Node23 n : node) if(n.nodeID.charAt(2) == 'A') cnt++; //Cnt 'A' nodes
         int[] aNode = new int[cnt];     //Create an array
 
         //Fill in the array with the node index.

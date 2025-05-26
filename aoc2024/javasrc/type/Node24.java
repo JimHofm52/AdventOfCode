@@ -3,12 +3,12 @@ package type;
 /**
  * Used in Day08
  */
-public class Node {
+public class Node24 {
     private int r;
     private int c;
     private char id;
 
-    public Node(int row, int col, char ch){
+    public Node24(int row, int col, char ch){
         r = row;
         c = col;
         id = ch;
