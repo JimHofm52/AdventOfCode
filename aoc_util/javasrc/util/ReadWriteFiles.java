@@ -43,6 +43,26 @@ public class ReadWriteFiles {
      * @return int array of values in text file.
      * @throws IOException
      */
+    public static String getInputStrOnly(String dayNum) throws IOException{
+
+        String fPath = getFilePath(dayNum);
+        File file = new File(fPath);
+        String fileIn; //Declare array to length of file lines
+        //Initialize with "" - for(int s = 0; s < fileIn.length; s++) fileIn[s] = ""
+
+        Scanner sf = new Scanner(file); //Open file
+        fileIn = sf.nextLine();
+        sf.close();             //Close file
+
+        return fileIn;          //Pass back new array
+    }
+
+    /**
+     * Read in strings from a text file and return an array of strings.
+     * @param dayNumday number of the input file to evaluate
+     * @return int array of values in text file.
+     * @throws IOException
+     */
     public static String[] getInputStr(String dayNum) throws IOException{
 
         String fPath = getFilePath(dayNum);
