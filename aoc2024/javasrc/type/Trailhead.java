@@ -4,18 +4,16 @@ import java.util.Arrays;
 
 public class Trailhead {
     private static int th_IDCntr = 0;
-    private int th_ID;
-    private int th_rc;
-    private int trail;
-    private int trailCnt = 0;
+    private int th_ID;  //Unique ID, JIC
+    private int th_rc;  //Compressed TH location, row * 100 + col
     private int[] trailtails;
     private int totTrails = 0;
 
     /**
-     * Constructor for a trailhead.  Will be assigned an incremental BlockID 
+     * Constructor for a trailhead.  Will be assigned an incremental TrailheadID 
      * in the order created.
-     * @param fileSize number of files to add with the blockID
-     * @param freeSpaceSize free spaces for other fles.
+     * @param row Row of TH location.
+     * @param col Col of TH location.
      */
     public Trailhead(int row, int col){
         th_ID = th_IDCntr++;
@@ -24,13 +22,13 @@ public class Trailhead {
 
     /** @return decmpressed row */
     public int getRow(){ return th_rc / 100; }
-    /** @return decmpressed row */
+    /** @return decmpressed col */
     public int getCol(){ return th_rc % 100; }
     /**  @return compressed trailhead location, rc */
     public int getRC(){ return th_rc; }
-    /**  @return Trailtail count */
+    /**  @return Trailtail count, unique end of trails, NOT trails to TTs */
     public int getTrailCnt(){ return trailtails.length; }
-    /** @return Total trails */
+    /** @return Total trails, number of trails to the end of the trail */
     public int getTotTrails(){ return totTrails; }
     /**
      * Set the total trail count to number.
@@ -39,7 +37,7 @@ public class Trailhead {
     public void setTotTeails(int num){ totTrails = num; }
 
     /**
-     * Add a trailtail if it doesn't a;ready exists.  Public facing.
+     * Add a trailtail if it doesn't already exists.  Public facing.
      * @param loc
      */
     public void addTrailtail(int[] loc){

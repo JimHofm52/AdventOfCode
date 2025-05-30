@@ -8,18 +8,18 @@ import util.ReadWriteFiles;
 
 public class Day10 {
     private static String fileInfo[];
-    private static int len;
+    // private static int len;
 
     /** Constructor, not needed but used for standards. 
      * <p>Started May 28, 2025,  Finished on May 29, 2025.
-     * <p>Took ~12 hour.  Runtime 0.yyy S.
+     * <p>Took ~12 hour.  Runtime 0.137 S.
     */
     private Day10(){}
 
     public static void update() throws IOException {
         String fNum = "10";//Part1- 667   Part2- 1344
         fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
-        len = fileInfo.length;          //Length of input array
+        // len = fileInfo.length;          //Length of input array
 
         Trailhead[] myTHs = findTrailHead(fileInfo);
 
@@ -31,7 +31,7 @@ public class Day10 {
      * Question 1: What is the sum of the scores of all trailheads on your topographic map?
      * A trailhead is any position that have height 0.
      * Score is the number of 9 heights that can be reached from a trailhead moving 1 height
-     * at a time, moving left, right, up or down.
+     * at a time, moving left, right, up or down.  DONOT include parrellel trails.
      */
     private static void question1(Trailhead[] thIn, String[] map) {
         int[] thLoc = new int[2];
@@ -48,6 +48,7 @@ public class Day10 {
     
     /**
      * Question 2: What is the sum of the ratings of all trailheads?
+     * Rating is the total number of trails to reach a 9 height.
      */
     private static void question2(Trailhead[] thIn) {
         int totTrails = 0;
@@ -59,7 +60,7 @@ public class Day10 {
     /**
      * Fing all the Trailheads in the map.
      * @param strIn
-     * @return arrary of trailheads
+     * @return arrary of all trailheads.
      */
     private static Trailhead[] findTrailHead(String[] strIn){
         Trailhead[] thIn = new Trailhead[0];
@@ -75,11 +76,15 @@ public class Day10 {
     }
 
     /**
-     * Find all trails.  Both the trailtails and total trails.
-     * @param mapIn
-     * @param th
-     * @param prvLoc
-     * @param prvHeight
+     * Search for the next step. This is an iterative method. Starts at trailhead location.
+     * Then is call again for the next location untilit reaches 9.
+     * <p> If height nine, update this trailhead info and trail count.
+     * <p> Save both the trailtails (unique end of trail) and total trails
+     * to get there.
+     * @param mapIn The map.
+     * @param th This trailhead to search
+     * @param prvLoc The previous starting point
+     * @param prvHeight previous elevation.
      */
     private static void findTrails(String[] mapIn, Trailhead th, int[] prvLoc, int prvHeight){
         int nxtHeight = prvHeight++;
