@@ -22,8 +22,8 @@ public class AoC2024 {
         // Day06A.update();  //<===== Change to match day  //18.375 s.
         // Day07.update();  //<===== Change to match day   //1.646 s.
         // Day08.update();  //<===== Change to match day   //0.175 s.
-        Day09.update();  //<===== Change to match day   //0.413 s.
-        // Day10.update();  //<===== Change to match day
+        // Day09.update();  //<===== Change to match day   //0.413 s.
+        Day10.update();  //<===== Change to match day
         // Day11.update();  //<===== Change to match day
         // Day11Big.update();  //<===== Change to match day
         // Day12.update();  //<===== Change to match day
