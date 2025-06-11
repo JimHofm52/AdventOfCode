@@ -19,14 +19,14 @@ public class Day11 {
 
     public static void update() throws IOException {
         startTm = System.currentTimeMillis();
-        String fNum = "111";//Part1- 212655   Part2- ???
+        String fNum = "11";//Part1- 212655   Part2- ???
         fileInfo = ReadWriteFiles.getInputStr(fNum);   //Get input in an array for 1
         len = fileInfo.length;          //Length of input array
         long[] stones = ReadWriteFiles.parceStrIntSpS(fileInfo[0]);
         // long[] stones = new long[] {0};
 
         int q1 = 25;
-        int q2 = 75;
+        int q2 = 45;
         // int q1 = 25;
         // int q2 = 75;
 

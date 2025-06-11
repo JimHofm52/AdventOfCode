@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "AoC2024",
+            "request": "launch",
+            "mainClass": "AoC2024",
+            "projectName": "AoC2015-24_a63a3655"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

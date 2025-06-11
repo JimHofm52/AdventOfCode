@@ -27,7 +27,7 @@ public class ReadWriteFiles {
         String fPath;
         fPath = getFilePath(dayNum, true);
         System.out.println(fPath);
-        // String fPath = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCode\\aoc2024\\javasrc\\textIn\\Day06Output.txt";
+        // String fPath = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCode\\AoC2015-24\\aoc2024\\javasrc\\textIn\\Day06Output.txt";
         // File file = new File(fPath);
         FileWriter fw = new FileWriter(fPath);
         PrintWriter fileOut = new PrintWriter(fw);
@@ -224,9 +224,9 @@ public class ReadWriteFiles {
      * @return string with full path/filename
      */
     private static String getFilePath(String dayNum, boolean output){
-        // String fDir = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCode\\" +
+        // String fDir = "C:\\Users\\Hofmjc\\Documents\\_Prog\\AdventOfCode\\AoC2015-24\\" +
         //                year + "\\javaSrc\\textIn";
-        String fDir = "C:\\\\Users\\\\Hofmjc\\\\Documents\\\\_Prog\\\\AdventOfCode\\\\" +
+        String fDir = "C:\\\\Users\\\\Hofmjc\\\\Documents\\\\_Prog\\\\AdventOfCode\\\\AoC2015-24\\\\" +
                        year + "\\\\javasrc\\\\textIn";
         String fName = "Day" + dayNum + (output ? "Output.txt" : "Input.txt");
         return fDir + "\\\\" + fName;
