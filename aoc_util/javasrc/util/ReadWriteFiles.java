@@ -340,4 +340,29 @@ public class ReadWriteFiles {
         numIn[cCnt] = Integer.parseInt(readIn.substring(beg, readIn.length()));
         return numIn;
     }
+
+    /**
+     * Convert a Space seperated string (of int) to an array of int.
+     * @param readIn space seprated string list of intergers
+     * @return an array of int
+     */
+    public static long[] parceStrIntSpS(String readIn){
+        int cCnt = 0;   //Comma count
+        for(int i = 0; i < readIn.length(); i++) if(readIn.charAt(i) == ' ') cCnt++; //Count commas
+        long[] numIn = new long[++cCnt];  //Define an array to hold the intergers
+
+        cCnt = 0;
+        int beg = 0;
+        for(int end = 0; end < readIn.length(); end++){     //For each char
+            if(readIn.charAt(end) == ' '){                  //if char is ' '
+                //parse in from beg to end as an int.
+                numIn[cCnt] = Long.parseLong(readIn.substring(beg, end));
+                cCnt++;
+                beg = end + 1;
+            }
+        }
+        //Do last entry
+        numIn[cCnt] = Integer.parseInt(readIn.substring(beg, readIn.length()));
+        return numIn;
+    }
 }
