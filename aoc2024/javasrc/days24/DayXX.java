@@ -5,7 +5,7 @@ import java.io.IOException;
 import util.ReadWriteFiles;
 
 public class DayXX {
-    private static String fileInfo[];
+    private static String[] fileInfo;
     private static int len;
 
     /** Constructor, not needed but used for standards. 
