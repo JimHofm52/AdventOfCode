@@ -25,7 +25,7 @@ public class AoC2024 {
         // Day09.update();  //<===== Change to match day   //0.413 s.
         // Day10.update();  //<===== Change to match day   //0.137 s.
         // Day11.update();  //<===== Change to match day   //0.296 s.
-        Day12.update();  //<===== Change to match day    //0.123 s.
+        Day12.update();  //<===== Change to match day    //0.288 s.
         // Day13.update();  //<===== Change to match day    //0.123 s.
 
         System.out.println("Execution time: " + 
